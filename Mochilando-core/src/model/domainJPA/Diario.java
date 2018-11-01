@@ -5,12 +5,14 @@
  */
 package model.domainJPA;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import model.domain.Usuario;
 
 /**
@@ -19,7 +21,7 @@ import model.domain.Usuario;
  */
 @Entity
 @Table(name="diario")
-public class Diario {
+public class Diario implements Serializable {
     @Id
     @GeneratedValue
     private Long codDiario;
@@ -28,8 +30,11 @@ public class Diario {
     
     @Column(name = "nom_diario", nullable = true)
     private String nomDiario;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date datPublicacao;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date datInicioViagem;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date datFimViagem;
     private String txtDiario;
     private String tipoDiario;
