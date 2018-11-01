@@ -15,7 +15,7 @@ import model.domain.Usuario;
 
 /**
  *
- * @author Aluno
+ * @author Juliana
  */
 @Entity
 @Table(name="diario")
