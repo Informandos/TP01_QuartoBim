@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 
 @Entity
 @Table(name="usuario")
-public class UsuarioJPA implements Serializable{
+public class Usuario implements Serializable{
     
     @Id
     @GeneratedValue
