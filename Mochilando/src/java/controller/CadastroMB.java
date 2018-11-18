@@ -1,14 +1,15 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.Date;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import model.domain.Cidade;
 import org.primefaces.model.UploadedFile;
 
 @SessionScoped
-@ManagedBean
-public class CadastroMB {
+@Named
+public class CadastroMB implements Serializable{
     private Long codUsuario;
     private String nomUsuario;
     private String sobrenomeUsuario;

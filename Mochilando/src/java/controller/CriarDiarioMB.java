@@ -1,15 +1,14 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.Date;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import org.primefaces.model.UploadedFile;
 
 @SessionScoped
-@ManagedBean
-public class CriarDiarioMB {
+@Named
+public class CriarDiarioMB implements Serializable {
     private String titulo;
     private String tipoDiario;
     private Date dataInicio;
