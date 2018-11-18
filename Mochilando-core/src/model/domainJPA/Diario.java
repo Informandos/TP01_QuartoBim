@@ -72,5 +72,61 @@ public class Diario implements Serializable {
     public void setCodDiario(Long codDiario) {
         this.codDiario = codDiario;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getNomDiario() {
+        return nomDiario;
+    }
+
+    public void setNomDiario(String nomDiario) {
+        this.nomDiario = nomDiario;
+    }
+
+    public Date getDatPublicacao() {
+        return datPublicacao;
+    }
+
+    public void setDatPublicacao(Date datPublicacao) {
+        this.datPublicacao = datPublicacao;
+    }
+
+    public Date getDatInicioViagem() {
+        return datInicioViagem;
+    }
+
+    public void setDatInicioViagem(Date datInicioViagem) {
+        this.datInicioViagem = datInicioViagem;
+    }
+
+    public Date getDatFimViagem() {
+        return datFimViagem;
+    }
+
+    public void setDatFimViagem(Date datFimViagem) {
+        this.datFimViagem = datFimViagem;
+    }
+
+    public String getTxtDiario() {
+        return txtDiario;
+    }
+
+    public void setTxtDiario(String txtDiario) {
+        this.txtDiario = txtDiario;
+    }
+
+    public String getTipoDiario() {
+        return tipoDiario;
+    }
+
+    public void setTipoDiario(String tipoDiario) {
+        this.tipoDiario = tipoDiario;
+    }
     
 }
