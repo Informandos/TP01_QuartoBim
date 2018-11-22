@@ -24,4 +24,3 @@ public interface InterfaceManterComentario {
     public List<Comentario> pesquisarPorCodDiario(Long codDiario) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
     public List<Comentario> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente;
 }
-*/
