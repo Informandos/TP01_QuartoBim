@@ -10,16 +10,18 @@ import model.domain.TipoAtracao;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
+import java.rmi.Remote;   
+import java.rmi.RemoteException;
 
 /**
  *
- * @author Juliana
+ * @author Juliana, Carlos
  */
-public interface InterfaceManterTipoAtracao {
-    public Long cadastrar(TipoAtracao tipoAtracao) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean alterar(TipoAtracao tipoAtracao) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean excluir(TipoAtracao tipoAtracao) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public TipoAtracao pesquisarPorId(Long codTipoAtracao) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public TipoAtracao pesquisarPorNome(String descTipoAtracao) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<TipoAtracao> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente;
+public interface InterfaceManterTipoAtracao extends Remote{
+    public Long cadastrar(TipoAtracao tipoAtracao) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean alterar(TipoAtracao tipoAtracao) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean excluir(TipoAtracao tipoAtracao) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public TipoAtracao pesquisarPorId(Long codTipoAtracao) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public TipoAtracao pesquisarPorNome(String descTipoAtracao) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<TipoAtracao> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
 }

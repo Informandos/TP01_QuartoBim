@@ -10,17 +10,19 @@ import model.domain.TagDiario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
+import java.rmi.Remote;   
+import java.rmi.RemoteException;
 
 /**
  *
- * @author Juliana
+ * @author Juliana, Carlos 
  */
-public interface InterfaceManterTagDiario {
-    public Long cadastrar(TagDiario tagDiario ) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean alterar(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean excluir(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public TagDiario pesquisarPorId(Long seqTagDiario) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<TagDiario> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<TagDiario> pesquisarPorCodDiario(Long codDiario) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<TagDiario> pesquisarPorCodTag(Long codTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
+public interface InterfaceManterTagDiario extends Remote{
+    public Long cadastrar(TagDiario tagDiario ) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean alterar(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean excluir(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public TagDiario pesquisarPorId(Long seqTagDiario) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<TagDiario> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<TagDiario> pesquisarPorCodDiario(Long codDiario) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<TagDiario> pesquisarPorCodTag(Long codTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
 }

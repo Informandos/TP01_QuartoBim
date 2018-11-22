@@ -10,16 +10,18 @@ import model.domain.Estado;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
+import java.rmi.Remote;   
+import java.rmi.RemoteException;
 
 /**
  *
- * @author Juliana
+ * @author Juliana, Carlos
  */
-public interface InterfaceManterEstado {
-    public Long cadastrar(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean alterar(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean excluir(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public Estado pesquisarPorId(Long codEstado) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public Estado pesquisarPorSigla(String sigla) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<Estado> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente;
+public interface InterfaceManterEstado extends Remote{
+    public Long cadastrar(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean alterar(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean excluir(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public Estado pesquisarPorId(Long codEstado) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public Estado pesquisarPorSigla(String sigla) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<Estado> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
 }

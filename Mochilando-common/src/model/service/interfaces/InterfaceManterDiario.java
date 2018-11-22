@@ -10,18 +10,20 @@ import model.domain.Diario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
+import java.rmi.Remote;   
+import java.rmi.RemoteException;
 
 /**
  *
- * @author Juliana
+ * @author Juliana, Carlos
  */
-public interface InterfaceManterDiario {
-    public Long cadastrar(Diario diario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean alterar(Diario diario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean excluir(Diario diario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public Diario pesquisarPorId(Long codDiario) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<Diario> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<Diario> pesquisarPorCodUsuario(Long codUsuario) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<Diario> pesquisarPorCodCidade(Long codCidade) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<Diario> pesquisarPorCodEstado(Long codEstado) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
+public interface InterfaceManterDiario extends Remote{
+    public Long cadastrar(Diario diario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean alterar(Diario diario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean excluir(Diario diario) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public Diario pesquisarPorId(Long codDiario) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<Diario> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<Diario> pesquisarPorCodUsuario(Long codUsuario) throws ExcecaoPersistencia,ExcecaoConexaoCliente,RemoteException;
+    public List<Diario> pesquisarPorCodCidade(Long codCidade) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<Diario> pesquisarPorCodEstado(Long codEstado) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
 }

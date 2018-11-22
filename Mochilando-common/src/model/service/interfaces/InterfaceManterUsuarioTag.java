@@ -10,17 +10,19 @@ import model.domain.UsuarioTag;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
+import java.rmi.Remote;   
+import java.rmi.RemoteException; 
 
 /**
  *
- * @author Juliana
+ * @author Juliana, Carlos
  */
-public interface InterfaceManterUsuarioTag {
-    public Long cadastrar(UsuarioTag usuarioTag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean alterar(UsuarioTag usuarioTag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean excluir(UsuarioTag usuarioTag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public UsuarioTag pesquisarPorId(Long seqUsuarioTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<UsuarioTag> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<UsuarioTag> pesquisarPorCodUsuario(Long codUsuario) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<UsuarioTag> pesquisarPorCodTag(Long codTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
+public interface InterfaceManterUsuarioTag  extends Remote{
+    public Long cadastrar(UsuarioTag usuarioTag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean alterar(UsuarioTag usuarioTag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean excluir(UsuarioTag usuarioTag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public UsuarioTag pesquisarPorId(Long seqUsuarioTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<UsuarioTag> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<UsuarioTag> pesquisarPorCodUsuario(Long codUsuario) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<UsuarioTag> pesquisarPorCodTag(Long codTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
 }

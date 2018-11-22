@@ -10,16 +10,18 @@ import model.domain.Tag;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
+import java.rmi.Remote;   
+import java.rmi.RemoteException;
 
 /**
  *
- * @author Juliana
+ * @author Juliana,Carlos
  */
-public interface InterfaceManterTag {
-    public Long cadastrar(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean alterar(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public boolean excluir(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente;
-    public Tag pesquisarPorId(Long codTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public Tag pesquisarPorNome(String descTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente;
-    public List<Tag> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente;
+public interface InterfaceManterTag extends Remote{
+    public Long cadastrar(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean alterar(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public boolean excluir(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio,ExcecaoConexaoCliente, RemoteException;
+    public Tag pesquisarPorId(Long codTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public Tag pesquisarPorNome(String descTag) throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
+    public List<Tag> pesquisarTodos() throws ExcecaoPersistencia,ExcecaoConexaoCliente, RemoteException;
 }
