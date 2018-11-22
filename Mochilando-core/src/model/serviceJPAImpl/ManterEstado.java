@@ -14,7 +14,9 @@ import util.db.exception.ExcecaoPersistencia;
 
 /**
  *
- * @author lucca
+ * @author Ta tudo errado 
+                   Maffort
+                   é verdade esse bilhete
  */
 public class ManterEstado implements InterfaceManterEstado{
     
