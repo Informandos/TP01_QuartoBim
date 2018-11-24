@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/lucca/Downloads/TP01_QuartoBim/Mochilando/web/editarPerfil.xhtml</file>
+            <file>file:/C:/Users/lucca/Downloads/TP01_QuartoBim/Mochilando/src/java/controller/PerfilMB.java</file>
+            <file>file:/C:/Users/lucca/Downloads/TP01_QuartoBim/Mochilando/web/perfil.xhtml</file>
+            <file>file:/C:/Users/lucca/Downloads/TP01_QuartoBim/Mochilando/src/java/controller/editarPerfilMB.java</file>
+        </group>
     </open-files>
 </project-private>

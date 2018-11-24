@@ -6,6 +6,7 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     template="template.xhtml">
     <ui:define name="corpo">
+<<<<<<< HEAD
         <h:form id="form">
 
             <p:growl id="msgs" showDetail="true" />
@@ -221,6 +222,32 @@
                     </h:panelGrid>
                 </p:tab>
             </p:tabView>
+=======
+        <h:form>
+            <p:graphicImage width="200" height="200" url="" name="foto_perfil"/> 
+
+            <h1 name="Nome">Nome: #{perfilMB.nomUsuario} #{perfilMB.sobrenomeUsuario}</h1>
+            <h2 name="Sexo"> Genêro: #{perfilMB.sexo}</h2>
+            <h2 name="datNasc">Data de Nascimento: #{perfilMB.datNascimento}</h2>
+
+            <div align="center">
+                <p:commandButton value="Editar Perfil" action="editarPerfil.jsf"/>
+                <br/>
+                <br/>
+                <p:growl id="message" showDetail="true" />
+
+                <p:commandButton value="Excluir Conta" update="message">
+                    <p:confirm header="Confirmação" message="Tem certeza?"/>
+                </p:commandButton>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"/>
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no"/>
+                </p:confirmDialog> 
+            </div>
+>>>>>>> 1098e240f3c4efb5e8dbf3c21fddf7bc93a585d6
         </h:form>
+
     </ui:define>
+
 </ui:decorate>
