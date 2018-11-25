@@ -5,7 +5,7 @@ import model.dao.implementacao.CidadeDAO;
 import model.dao.interfaces.InterfaceCidadeDAO;
 import model.domainAntigo.Cidade;
 import model.service.interfaces.InterfaceManterCidade;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 public class ManterCidade implements InterfaceManterCidade {

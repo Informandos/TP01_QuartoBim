@@ -11,7 +11,7 @@ import model.dao.interfaces.InterfaceDiarioDAO;
 import model.domainAntigo.Diario;
 import model.service.interfaces.InterfaceManterDiario;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

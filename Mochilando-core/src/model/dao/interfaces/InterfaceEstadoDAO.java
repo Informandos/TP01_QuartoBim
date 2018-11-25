@@ -6,7 +6,7 @@
 package model.dao.interfaces;
 
 import java.util.List;
-import model.domainAntigo.Estado;
+import model.domainJPA.Estado;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

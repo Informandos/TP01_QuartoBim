@@ -10,7 +10,7 @@ import model.dao.implementacao.FotoDAO;
 import model.dao.interfaces.InterfaceFotoDAO;
 import model.domainAntigo.Foto;
 import model.service.interfaces.InterfaceManterFoto;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

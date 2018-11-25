@@ -5,7 +5,7 @@ import model.dao.implementacao.DiaAtracaoDAO;
 import model.dao.interfaces.InterfaceDiaAtracaoDAO;
 import model.domainAntigo.DiaAtracao;
 import model.service.interfaces.InterfaceManterDiaAtracao;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 public class ManterDiaAtracao implements InterfaceManterDiaAtracao{

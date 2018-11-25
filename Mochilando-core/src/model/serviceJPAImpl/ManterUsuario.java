@@ -6,7 +6,7 @@ import javax.persistence.Query;
 import model.domainAntigo.Usuario;
 import model.service.interfaces.InterfaceManterUsuario;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

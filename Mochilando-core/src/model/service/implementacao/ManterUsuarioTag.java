@@ -1,6 +1,6 @@
 package model.service.implementacao;
 
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
 import model.dao.implementacao.UsuarioTagDAO;

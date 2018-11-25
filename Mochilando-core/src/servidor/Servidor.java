@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.conversao.Conversao;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import util.pacote.DesmontagemPacote;
 import util.pacote.Pacote;

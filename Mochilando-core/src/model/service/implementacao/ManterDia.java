@@ -10,7 +10,7 @@ import model.dao.implementacao.DiaDAO;
 import model.dao.interfaces.InterfaceDiaDAO;
 import model.domainAntigo.Dia;
 import model.service.interfaces.InterfaceManterDia;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

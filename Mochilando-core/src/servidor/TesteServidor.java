@@ -12,7 +12,7 @@ import java.net.InetAddress;
 import static servidor.Servidor.requisicao;
 import util.conversao.Conversao;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

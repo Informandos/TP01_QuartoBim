@@ -10,7 +10,7 @@ import model.dao.implementacao.TipoAtracaoDAO;
 import model.dao.interfaces.InterfaceTipoAtracaoDAO;
 import model.domainAntigo.TipoAtracao;
 import model.service.interfaces.InterfaceManterTipoAtracao;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

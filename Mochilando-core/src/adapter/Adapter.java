@@ -26,13 +26,13 @@ import model.domainAntigo.Comentario;
 import model.domainAntigo.Dia;
 import model.domainAntigo.DiaAtracao;
 import model.domainAntigo.Diario;
-import model.domainAntigo.Estado;
 import model.domainAntigo.Foto;
 import model.domainAntigo.Tag;
 import model.domainAntigo.TagDiario;
 import model.domainAntigo.TipoAtracao;
 import model.domainAntigo.Usuario;
 import model.domainAntigo.UsuarioTag;
+import model.domainJPA.Estado;
 import model.service.implementacao.ManterAtracao;
 import model.service.implementacao.ManterAvaliacaoComentario;
 import model.service.implementacao.ManterAvaliacaoDiario;
@@ -64,7 +64,7 @@ import model.service.interfaces.InterfaceManterTipoAtracao;
 import model.service.interfaces.InterfaceManterUsuario;
 import model.service.interfaces.InterfaceManterUsuarioTag;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

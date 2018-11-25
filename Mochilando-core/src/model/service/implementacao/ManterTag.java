@@ -10,7 +10,7 @@ import model.dao.implementacao.TagDAO;
 import model.dao.interfaces.InterfaceTagDAO;
 import model.domainAntigo.Tag;
 import model.service.interfaces.InterfaceManterTag;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

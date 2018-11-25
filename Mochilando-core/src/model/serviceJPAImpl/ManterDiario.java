@@ -13,7 +13,7 @@ import model.dao.interfaces.InterfaceDiarioDAO;
 import model.domainAntigo.Diario;
 import model.service.interfaces.InterfaceManterDiario;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**
@@ -76,16 +76,7 @@ public class ManterDiario implements InterfaceManterDiario {
         if(diario.getTxtDiario() == null || diario.getTxtDiario().isEmpty()){
             throw new ExcecaoNegocio("Obrigatório informar texto do diario");
         }
-        Diario diarioAux = pesquisarPorId(diario.getCodDiario());
-        if(diarioAux!=null){
-            diarioAux.setDatFimViagem(diario.getDatFimViagem());
-            diarioAux.setDatInicioViagem(diario.getDatFimViagem());
-            diarioAux.setDatPublicacao(diario.getDatPublicacao());
-            diarioAux.setNomDiario(diario.getNomDiario());
-            diarioAux.setTipoDiario(diario.getTipoDiario());
-            diarioAux.setTxtDiario(diario.getTxtDiario());
-            diarioAux.setUsuario(diario.getUsuario());
-        }
+        em.merge(diario);
         return true;
     }
 

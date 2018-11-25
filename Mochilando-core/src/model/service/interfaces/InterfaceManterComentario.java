@@ -9,7 +9,7 @@ package model.service.interfaces;
 import java.util.List;
 import model.domainAntigo.Comentario;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

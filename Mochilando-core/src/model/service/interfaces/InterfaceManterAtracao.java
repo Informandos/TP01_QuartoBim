@@ -10,7 +10,7 @@ import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
 import model.domainAntigo.Atracao;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 
 /**
  *

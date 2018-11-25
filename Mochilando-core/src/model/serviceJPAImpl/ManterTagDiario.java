@@ -6,7 +6,7 @@ import javax.persistence.Query;
 import model.domainAntigo.TagDiario;
 import model.service.interfaces.InterfaceManterTagDiario;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

@@ -1,4 +1,4 @@
-package model.domain;
+package model.domainJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -47,11 +47,11 @@ public class Estado implements Serializable{
         this.nomEstado = nomEstado;
     }
 
-    public String getSiglaEstado() {
+    public String getSigla() {
         return siglaEstado;
     }
 
-    public void setSiglaEstado(String siglaEstado) {
+    public void setSigla(String siglaEstado) {
         this.siglaEstado = siglaEstado;
     }
         

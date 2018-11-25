@@ -6,26 +6,24 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.dao.interfaces.InterfaceEstadoDAO;
-import model.domainAntigo.Estado;
+import model.domainJPA.Estado;
 import model.service.interfaces.InterfaceManterEstado;
 import util.db.exception.ExcecaoConexaoCliente;
-import util.db.exception.ExcecaoNegocio;
+import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
 /**
  *
- * @author Ta tudo errado 
-                   Maffort
-                   é verdade esse bilhete
+ * @author 
  */
 public class ManterEstado implements InterfaceManterEstado{
     
-    protected InterfaceEstadoDAO estadoDAO;
     protected EntityManager em;
 
     public ManterEstado(EntityManager em) {
         this.em = em;
     }
+
     
     @Override
     public Long cadastrar(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
@@ -43,8 +41,8 @@ public class ManterEstado implements InterfaceManterEstado{
             Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
         }
                   
-        Long result = estadoDAO.inserir(estado);
-        return result;
+        em.persist(estado);
+        return estado.getCodEstado();
     }
 
     @Override
@@ -54,9 +52,9 @@ public class ManterEstado implements InterfaceManterEstado{
         
         if((estado.getSigla() == null) || (estado.getSigla().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar a sigla.");
-                  
-        boolean result = estadoDAO.atualizar(estado);
-        return result;
+        
+        em.merge(estado);
+        return true;
     }
 
     @Override
