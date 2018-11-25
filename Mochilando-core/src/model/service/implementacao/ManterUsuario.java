@@ -8,7 +8,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.UsuarioDAO;
 import model.dao.interfaces.InterfaceUsuarioDAO;
-import model.domain.Usuario;
+import model.domainAntigo.Usuario;
 import model.service.interfaces.InterfaceManterUsuario;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

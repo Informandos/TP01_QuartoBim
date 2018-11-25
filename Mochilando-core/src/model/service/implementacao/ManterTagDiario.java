@@ -5,7 +5,7 @@ import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
 import model.dao.implementacao.TagDiarioDAO;
 import model.dao.interfaces.InterfaceTagDiarioDAO;
-import model.domain.TagDiario;
+import model.domainAntigo.TagDiario;
 import model.service.interfaces.InterfaceManterTagDiario;
 
 public class ManterTagDiario implements InterfaceManterTagDiario{

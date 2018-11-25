@@ -6,7 +6,7 @@
 package model.dao.interfaces;
 
 import java.util.List;
-import model.domain.Foto;
+import model.domainAntigo.Foto;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

@@ -1,7 +1,7 @@
 package model.dao.implementacao;
 
 import model.dao.interfaces.InterfaceAvaliacaoComentarioDAO;
-import model.domain.AvaliacaoComentario;
+import model.domainAntigo.AvaliacaoComentario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import model.dao.interfaces.InterfaceComentarioDAO;
 import model.dao.interfaces.InterfaceUsuarioDAO;
-import model.domain.Usuario;
-import model.domain.Comentario;
+import model.domainAntigo.Usuario;
+import model.domainAntigo.Comentario;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 

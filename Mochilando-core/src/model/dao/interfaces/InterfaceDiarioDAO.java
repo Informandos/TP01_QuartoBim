@@ -6,10 +6,10 @@
 package model.dao.interfaces;
 
 import java.util.List;
-import model.domain.Cidade;
-import model.domain.Diario;
-import model.domain.Estado;
-import model.domain.Usuario;
+import model.domainAntigo.Cidade;
+import model.domainAntigo.Diario;
+import model.domainAntigo.Estado;
+import model.domainAntigo.Usuario;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

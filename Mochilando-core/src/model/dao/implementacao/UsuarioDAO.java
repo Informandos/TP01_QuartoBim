@@ -2,12 +2,12 @@ package model.dao.implementacao;
 
 import java.util.List;
 import model.dao.interfaces.InterfaceUsuarioDAO;
-import model.domain.Usuario;
+import model.domainAntigo.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.domain.Cidade;
+import model.domainAntigo.Cidade;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionFactory;
 import util.db.ConnectionManager;

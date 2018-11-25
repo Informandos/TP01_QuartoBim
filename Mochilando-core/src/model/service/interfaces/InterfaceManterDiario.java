@@ -6,7 +6,7 @@
 package model.service.interfaces;
 
 import java.util.List;
-import model.domain.Diario;
+import model.domainAntigo.Diario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

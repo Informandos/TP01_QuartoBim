@@ -3,7 +3,7 @@ package model.serviceJPAImpl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.domain.Usuario;
+import model.domainAntigo.Usuario;
 import model.service.interfaces.InterfaceManterUsuario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;

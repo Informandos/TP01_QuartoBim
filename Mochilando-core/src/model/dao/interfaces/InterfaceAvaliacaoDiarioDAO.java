@@ -6,7 +6,7 @@
 package model.dao.interfaces;
 
 import java.util.List;
-import model.domain.AvaliacaoDiario;
+import model.domainAntigo.AvaliacaoDiario;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

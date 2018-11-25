@@ -8,7 +8,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.FotoDAO;
 import model.dao.interfaces.InterfaceFotoDAO;
-import model.domain.Foto;
+import model.domainAntigo.Foto;
 import model.service.interfaces.InterfaceManterFoto;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

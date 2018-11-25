@@ -12,11 +12,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.dao.interfaces.InterfaceCidadeDAO;
-import model.domain.Cidade;
+import model.domainAntigo.Cidade;
 import util.db.exception.ExcecaoPersistencia;
 import java.sql.Connection;
 import model.dao.interfaces.InterfaceEstadoDAO;
-import model.domain.Estado;
+import model.domainAntigo.Estado;
 import util.db.ConnectionManager;
 
 /**

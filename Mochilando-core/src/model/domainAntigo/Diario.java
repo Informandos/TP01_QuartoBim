@@ -3,121 +3,132 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.domainJPA;
+package model.domainAntigo;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import model.domain.Usuario;
 
 /**
  *
  * @author Juliana
  */
-@Entity
-@Table(name="diario", schema="public")
-public class Diario implements Serializable {
-    
-    @Id
-    /* Identity significa id sequencial (chave burra)*/
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+public class Diario {
     private Long codDiario;
-    /*
-    * A anotação do relacionamento (unica) sera feita somente na
-    * classe que tiver com o lado muitos -> convencao nossa
-    * pEx: ha muitos diarios para o mesmo usuario. 
-    * Logo, diario deve receber a notaçao ManyToOne
-    * Sempre vai ter a @JoinColumn (unica tb e presente deste lado)
-    */
-    @ManyToOne
-    @JoinColumn(name="cod_usuario")
     private Usuario usuario;
-    
-    @Column(name = "nom_diario")
     private String nomDiario;
-    
-    @Column(name="dat_publicacao")
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date datPublicacao;
-    
-    @Column(name="dat_inicio_viagem")
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date datInicioViagem;
-    
-    @Column(name="dat_fim_viagem")
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date datFimViagem;
-    
-    @Column(name="txt_diario")
-    @Lob @Basic(fetch=FetchType.LAZY)
     private String txtDiario;
-    
-    @Column(name="tipo_diario")
     private String tipoDiario;
 
+    public Diario() {
+    }
+
+    public Diario(Long codDiario, Usuario usuario, String nomDiario, Date datPublicacao, Date datInicioViagem, Date datFimViagem, String txtDiario, String tipoDiario) {
+        this.codDiario = codDiario;
+        this.usuario = usuario;
+        this.nomDiario = nomDiario;
+        this.datPublicacao = datPublicacao;
+        this.datInicioViagem = datInicioViagem;
+        this.datFimViagem = datFimViagem;
+        this.txtDiario = txtDiario;
+        this.tipoDiario = tipoDiario;
+    }
+
+    /**
+     * @return the codDiario
+     */
     public Long getCodDiario() {
         return codDiario;
     }
 
+    /**
+     * @param codDiario the codDiario to set
+     */
     public void setCodDiario(Long codDiario) {
         this.codDiario = codDiario;
     }
 
+    /**
+     * @return the usuario
+     */
     public Usuario getUsuario() {
         return usuario;
     }
 
+    /**
+     * @param usuario the usuario to set
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * @return the nomDiario
+     */
     public String getNomDiario() {
         return nomDiario;
     }
 
+    /**
+     * @param nomDiario the nomDiario to set
+     */
     public void setNomDiario(String nomDiario) {
         this.nomDiario = nomDiario;
     }
 
+    /**
+     * @return the datPublicacao
+     */
     public Date getDatPublicacao() {
         return datPublicacao;
     }
 
+    /**
+     * @param datPublicacao the datPublicacao to set
+     */
     public void setDatPublicacao(Date datPublicacao) {
         this.datPublicacao = datPublicacao;
     }
 
+    /**
+     * @return the datInicioViagem
+     */
     public Date getDatInicioViagem() {
         return datInicioViagem;
     }
 
+    /**
+     * @param datInicioViagem the datInicioViagem to set
+     */
     public void setDatInicioViagem(Date datInicioViagem) {
         this.datInicioViagem = datInicioViagem;
     }
 
+    /**
+     * @return the datFimViagem
+     */
     public Date getDatFimViagem() {
         return datFimViagem;
     }
 
+    /**
+     * @param datFimViagem the datFimViagem to set
+     */
     public void setDatFimViagem(Date datFimViagem) {
         this.datFimViagem = datFimViagem;
     }
 
+    /**
+     * @return the txtDiario
+     */
     public String getTxtDiario() {
         return txtDiario;
     }
 
+    /**
+     * @param txtDiario the txtDiario to set
+     */
     public void setTxtDiario(String txtDiario) {
         this.txtDiario = txtDiario;
     }
@@ -129,5 +140,7 @@ public class Diario implements Serializable {
     public void setTipoDiario(String tipoDiario) {
         this.tipoDiario = tipoDiario;
     }
+
+    
     
 }

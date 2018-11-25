@@ -10,9 +10,9 @@ import java.util.List;
 import model.dao.interfaces.InterfaceComentarioDAO;
 import model.dao.interfaces.InterfaceDiarioDAO;
 import model.dao.interfaces.InterfaceUsuarioDAO;
-import model.domain.Comentario;
-import model.domain.Diario;
-import model.domain.Usuario;
+import model.domainAntigo.Comentario;
+import model.domainAntigo.Diario;
+import model.domainAntigo.Usuario;
 import util.db.ConnectionManager;
 import util.db.exception.ExcecaoPersistencia;
 

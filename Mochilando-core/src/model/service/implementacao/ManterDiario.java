@@ -8,7 +8,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.DiarioDAO;
 import model.dao.interfaces.InterfaceDiarioDAO;
-import model.domain.Diario;
+import model.domainAntigo.Diario;
 import model.service.interfaces.InterfaceManterDiario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;

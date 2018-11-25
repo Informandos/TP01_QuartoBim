@@ -3,7 +3,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.DiaAtracaoDAO;
 import model.dao.interfaces.InterfaceDiaAtracaoDAO;
-import model.domain.DiaAtracao;
+import model.domainAntigo.DiaAtracao;
 import model.service.interfaces.InterfaceManterDiaAtracao;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

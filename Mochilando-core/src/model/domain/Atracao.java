@@ -5,30 +5,63 @@
  */
 package model.domain;
 
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  *
  * @author Juliana
  */
-public class Atracao {
-
+@Entity
+@Table(name="atracao", schema="public")
+public class Atracao implements Serializable {
+    
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "seq_atracao")
     private Long seqAtracao;
+    
+    //Ha muitas atracoes para uma mesma cidade
+    @ManyToOne
+    @JoinColumn(name="cod_cidade")
     private Cidade cidade;
+    
+    //Ha muitas atracoes para um mesmo tipo de atracao
+    @ManyToOne
+    @Column(name = "tipo_atracao")
     private TipoAtracao tipoAtracao;
+    
+    @Column(name = "nom_atracao")
     private String nomAtracao;
+    
+    @Column(name = "nro_latitude")
     private Double nroLatitude;
+    
+    @Column(name = "nro_longitude")
     private Double nroLongitude;
+    
+    /*
+    Dia e Atracao formam a tabela DiaAtracao
+    Atracao e a dentetora do relacionamento, por isso
+    recebe mappedBy=atracoes (List do tipo do dono do outro lado)
+    no parametro ManyToMany
+    */
+    @ManyToMany(mappedBy="atracoes", cascade=CascadeType.ALL)
+    private List<Dia> dias;
 
     public Atracao() {
     }
 
-    public Atracao(Long seqAtracao, Cidade cidade, TipoAtracao tipoAtracao, String nomAtracao, double nroLatitude, double nroLongitude) {
-        this.seqAtracao = seqAtracao;
-        this.cidade = cidade;
-        this.tipoAtracao = tipoAtracao;
-        this.nomAtracao = nomAtracao;
-        this.nroLatitude = nroLatitude;
-        this.nroLongitude = nroLongitude;
-    }
+    
 
     /**
      * @return the seqAtracao
@@ -112,6 +145,14 @@ public class Atracao {
      */
     public void setNroLongitude(Double nroLongitude) {
         this.nroLongitude = nroLongitude;
+    }
+
+    public List<Dia> getDias() {
+        return dias;
+    }
+
+    public void setDias(List<Dia> dias) {
+        this.dias = dias;
     }
 
 }

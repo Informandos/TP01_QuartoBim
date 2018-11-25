@@ -5,7 +5,7 @@ import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
 import model.dao.implementacao.UsuarioTagDAO;
 import model.dao.interfaces.InterfaceUsuarioTagDAO;
-import model.domain.UsuarioTag;
+import model.domainAntigo.UsuarioTag;
 import model.service.interfaces.InterfaceManterUsuarioTag;
 
 public class ManterUsuarioTag implements InterfaceManterUsuarioTag {

@@ -1,32 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.domain;
 
-import java.awt.image.BufferedImage;
-import java.sql.Blob;
-import org.ietf.jgss.Oid;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import model.domainAntigo.Dia;
 
 /**
  *
- * @author Juliana
+ * @author lucca
  */
-public class Foto {
 
+@Entity
+@Table(name="foto", schema="public")
+public class Foto implements Serializable{
+    
+    @Id
+    @GeneratedValue (strategy=GenerationType.IDENTITY)
     private Long seqFoto;
+    
+    @OneToMany
+    @JoinColumn(name = "seq_Dia")
     private Dia dia;
-    private Byte byteFoto;
+    @Column(name = "foto")
+    private Byte Foto;
 
-    public Foto() {
-    }
-
-    public Foto(Long seqFoto, Dia dia, Byte byteFoto) {
-        this.seqFoto = seqFoto;
-        this.dia = dia;
-        this.byteFoto = byteFoto;
-    }
 
     public Long getSeqFoto() {
         return seqFoto;
@@ -44,12 +47,12 @@ public class Foto {
         this.dia = dia;
     }
 
-    public Byte getByteFoto() {
-        return byteFoto;
+    public Byte getFoto() {
+        return Foto;
     }
 
-    public void setByteFoto( Byte byteFoto) {
-        this.byteFoto = byteFoto;
+    public void setFoto(Byte Foto) {
+        this.Foto = Foto;
     }
-
+    
 }

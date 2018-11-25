@@ -3,7 +3,7 @@ package model.serviceJPAImpl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.domain.TipoAtracao;
+import model.domainAntigo.TipoAtracao;
 import model.service.interfaces.InterfaceManterTipoAtracao;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;

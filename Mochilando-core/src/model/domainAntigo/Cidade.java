@@ -3,37 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.domain;
-
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+package model.domainAntigo;
 
 /**
  *
  * @author Juliana
  */
-@Entity
-@Table(name = "atracao", schema = "public")
-public class Cidade implements Serializable {
+public class Cidade {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_cidade")
     private Long codCidade;
-    
-    //Ha muitas cidades em um mesmo estado
-    @ManyToOne
-    @JoinColumn(name = "cod_estado")
     private Estado estado;
-    
-    @Column(name = "nom_cidade")
     private String nomCidade;
 
     public Cidade() {

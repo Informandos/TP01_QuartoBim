@@ -14,10 +14,10 @@ import java.util.List;
 import model.busca.implementacao.BuscarDiario;
 import model.dao.interfaces.InterfaceDiarioDAO;
 import model.dao.interfaces.InterfaceUsuarioDAO;
-import model.domain.Cidade;
-import model.domain.Diario;
-import model.domain.Estado;
-import model.domain.Usuario;
+import model.domainAntigo.Cidade;
+import model.domainAntigo.Diario;
+import model.domainAntigo.Estado;
+import model.domainAntigo.Usuario;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 

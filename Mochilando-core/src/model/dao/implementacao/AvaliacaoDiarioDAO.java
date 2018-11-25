@@ -1,7 +1,7 @@
 package model.dao.implementacao;
 
 import model.dao.interfaces.InterfaceAvaliacaoDiarioDAO;
-import model.domain.AvaliacaoDiario;
+import model.domainAntigo.AvaliacaoDiario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import model.dao.interfaces.InterfaceDiarioDAO;
 import model.dao.interfaces.InterfaceUsuarioDAO;
-import model.domain.Diario;
-import model.domain.Usuario;
+import model.domainAntigo.Diario;
+import model.domainAntigo.Usuario;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 

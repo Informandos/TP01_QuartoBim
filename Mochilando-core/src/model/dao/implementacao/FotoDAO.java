@@ -3,12 +3,12 @@ package model.dao.implementacao;
 
 import java.util.List;
 import model.dao.interfaces.InterfaceFotoDAO;
-import model.domain.Foto;
+import model.domainAntigo.Foto;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.domain.Dia;
+import model.domainAntigo.Dia;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionFactory;
 import util.db.ConnectionManager;

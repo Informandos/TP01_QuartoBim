@@ -3,27 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.domainJPA;
-
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import model.domain.*;
+package model.domainAntigo;
 
 /**
  *
  * @author Juliana
  */
-@Entity
-@Table(name="atracao", schema="public")
-public class Atracao implements Serializable {
-    
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+public class Atracao {
+
     private Long seqAtracao;
-    
     private Cidade cidade;
     private TipoAtracao tipoAtracao;
     private String nomAtracao;

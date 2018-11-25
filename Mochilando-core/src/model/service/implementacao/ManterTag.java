@@ -8,7 +8,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.TagDAO;
 import model.dao.interfaces.InterfaceTagDAO;
-import model.domain.Tag;
+import model.domainAntigo.Tag;
 import model.service.interfaces.InterfaceManterTag;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

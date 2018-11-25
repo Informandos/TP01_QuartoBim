@@ -1,7 +1,7 @@
 package model.dao.implementacao;
 
 import model.dao.interfaces.InterfaceAtracaoDAO;
-import model.domain.Atracao;
+import model.domainAntigo.Atracao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +11,8 @@ import java.util.List;
 import model.dao.interfaces.InterfaceCidadeDAO;
 import model.dao.interfaces.InterfaceTipoAtracaoDAO;
 import model.dao.implementacao.TipoAtracaoDAO;
-import model.domain.Cidade;
-import model.domain.TipoAtracao;
+import model.domainAntigo.Cidade;
+import model.domainAntigo.TipoAtracao;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 

@@ -6,8 +6,8 @@
 package model.dao.interfaces;
 
 import java.util.List;
-import model.domain.AvaliacaoComentario;
-import model.domain.Comentario;
+import model.domainAntigo.AvaliacaoComentario;
+import model.domainAntigo.Comentario;
 import util.db.exception.ExcecaoPersistencia;
 
 

@@ -14,9 +14,9 @@ import java.util.List;
 import model.dao.interfaces.InterfaceAtracaoDAO;
 import model.dao.interfaces.InterfaceDiaAtracaoDAO;
 import model.dao.interfaces.InterfaceDiaDAO;
-import model.domain.Atracao;
-import model.domain.Dia;
-import model.domain.DiaAtracao;
+import model.domainAntigo.Atracao;
+import model.domainAntigo.Dia;
+import model.domainAntigo.DiaAtracao;
 import util.db.ConnectionManager;
 import util.db.exception.ExcecaoPersistencia;
 

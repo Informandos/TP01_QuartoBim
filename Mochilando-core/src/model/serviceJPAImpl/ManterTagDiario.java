@@ -3,7 +3,7 @@ package model.serviceJPAImpl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.domain.TagDiario;
+import model.domainAntigo.TagDiario;
 import model.service.interfaces.InterfaceManterTagDiario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;

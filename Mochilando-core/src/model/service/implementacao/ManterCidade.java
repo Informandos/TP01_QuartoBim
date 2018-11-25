@@ -3,7 +3,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.CidadeDAO;
 import model.dao.interfaces.InterfaceCidadeDAO;
-import model.domain.Cidade;
+import model.domainAntigo.Cidade;
 import model.service.interfaces.InterfaceManterCidade;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

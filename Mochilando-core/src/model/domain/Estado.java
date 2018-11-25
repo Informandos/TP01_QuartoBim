@@ -1,70 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.domain;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
- * @author Juliana
+ * @author lucca
  */
-public class Estado {
-    
+
+@Entity
+@Table(name="estado", schema="public")
+public class Estado implements Serializable{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long codEstado;
-    private String sigla;
+    
+    @Column(name = "nom_estado")
     private String nomEstado;
-
-    public Estado() {
+    @Column(name = "sigla")
+    private String siglaEstado;
+    
+    public Estado(){
+        
     }
 
-    public Estado(Long codEstado, String sigla, String nomEstado) {
-        this.codEstado = codEstado;
-        this.sigla = sigla;
-        this.nomEstado = nomEstado;
-    }
-
-    /**
-     * @return the codEstado
-     */
     public Long getCodEstado() {
         return codEstado;
     }
 
-    /**
-     * @param codEstado the codEstado to set
-     */
     public void setCodEstado(Long codEstado) {
         this.codEstado = codEstado;
     }
 
-    /**
-     * @return the sigla
-     */
-    public String getSigla() {
-        return sigla;
-    }
-
-    /**
-     * @param sigla the sigla to set
-     */
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    /**
-     * @return the nomEstado
-     */
     public String getNomEstado() {
         return nomEstado;
     }
 
-    /**
-     * @param nomEstado the nomEstado to set
-     */
     public void setNomEstado(String nomEstado) {
         this.nomEstado = nomEstado;
     }
 
-    
+    public String getSiglaEstado() {
+        return siglaEstado;
+    }
+
+    public void setSiglaEstado(String siglaEstado) {
+        this.siglaEstado = siglaEstado;
+    }
+        
 }

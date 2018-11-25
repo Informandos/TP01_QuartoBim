@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.dao.interfaces.InterfaceEstadoDAO;
-import model.domain.Estado;
+import model.domainAntigo.Estado;
 import model.service.interfaces.InterfaceManterEstado;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;

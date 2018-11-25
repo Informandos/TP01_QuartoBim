@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import model.dao.interfaces.InterfaceDiarioDAO;
 import model.dao.interfaces.InterfaceEstadoDAO;
-import model.domain.Dia;
-import model.domain.Diario;
-import model.domain.Estado;
+import model.domainAntigo.Dia;
+import model.domainAntigo.Diario;
+import model.domainAntigo.Estado;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 

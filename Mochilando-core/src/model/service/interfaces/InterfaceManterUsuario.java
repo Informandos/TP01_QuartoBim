@@ -3,7 +3,7 @@ package model.service.interfaces;
 
 
 import java.util.List;
-import model.domain.Usuario;
+import model.domainAntigo.Usuario;
 import util.db.exception.*;
 
 /**

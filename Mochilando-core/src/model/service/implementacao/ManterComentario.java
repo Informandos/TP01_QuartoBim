@@ -5,7 +5,7 @@ import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
 import model.dao.implementacao.ComentarioDAO;
 import model.dao.interfaces.InterfaceComentarioDAO;
-import model.domain.Comentario;
+import model.domainAntigo.Comentario;
 import model.service.interfaces.InterfaceManterComentario;
 
 public class ManterComentario implements InterfaceManterComentario{

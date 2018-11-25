@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.dao.interfaces.InterfaceTagDAO;
-import model.domain.Tag;
+import model.domainAntigo.Tag;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 

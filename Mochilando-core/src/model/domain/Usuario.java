@@ -1,167 +1,126 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.domain;
 
-import java.sql.Blob;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import model.domainAntigo.Cidade;
 
 /**
  *
- * @author Juliana
+ * @author lucca
  */
-public class Usuario {
+
+@Entity
+@Table(name="usuario", schema="public")
+public class Usuario implements Serializable{
+    
+    @Id
+    @GeneratedValue (strategy=GenerationType.IDENTITY)
     private Long codUsuario;
-    private String nomUsuario;
+    
+    @Column(name = "nom_usuario")
+    private String nomeUsuario;
+    @Column(name = "sobrenome_usuario")
     private String sobrenomeUsuario;
+    @Column(name = "txt_email")
     private String txtEmail;
+    @Column(name = "txt_senha")
     private String txtSenha;
+    @Column(name = "img_perfil")
     private Byte imgPerfil;
+    @Column(name = "sexo")
     private String sexo;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "dat_nascimento")
     private Date datNascimento;
+    @ManyToOne
+    @JoinColumn(name = "cod_cidade")
     private Cidade cidade;
+    
+    @ManyToMany(mappedBy="usuarios", cascade = CascadeType.ALL)
+    List<Tag> tags;
 
-    public Usuario() {
-    }
-
-    public Usuario(Long codUsuario, String nomUsuario, String sobrenomeUsuario, String txtEmail, String txtSenha, Byte imgPerfil, String sexo, Date datNascimento, Cidade cidade) {
-        this.codUsuario = codUsuario;
-        this.nomUsuario = nomUsuario;
-        this.sobrenomeUsuario = sobrenomeUsuario;
-        this.txtEmail = txtEmail;
-        this.txtSenha = txtSenha;
-        this.imgPerfil = imgPerfil;
-        this.sexo = sexo;
-        this.datNascimento = datNascimento;
-        this.cidade = cidade;
-    }
-
-    /**
-     * @return the codUsuario
-     */
     public Long getCodUsuario() {
         return codUsuario;
     }
 
-    /**
-     * @param codUsuario the codUsuario to set
-     */
     public void setCodUsuario(Long codUsuario) {
         this.codUsuario = codUsuario;
     }
 
-    /**
-     * @return the nomUsuario
-     */
-    public String getNomUsuario() {
-        return nomUsuario;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    /**
-     * @param nomUsuario the nomUsuario to set
-     */
-    public void setNomUsuario(String nomUsuario) {
-        this.nomUsuario = nomUsuario;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
-    /**
-     * @return the sobrenomeUsuario
-     */
     public String getSobrenomeUsuario() {
         return sobrenomeUsuario;
     }
 
-    /**
-     * @param sobrenomeUsuario the sobrenomeUsuario to set
-     */
     public void setSobrenomeUsuario(String sobrenomeUsuario) {
         this.sobrenomeUsuario = sobrenomeUsuario;
     }
 
-    /**
-     * @return the txtEmail
-     */
     public String getTxtEmail() {
         return txtEmail;
     }
 
-    /**
-     * @param txtEmail the txtEmail to set
-     */
     public void setTxtEmail(String txtEmail) {
         this.txtEmail = txtEmail;
     }
 
-    /**
-     * @return the txtSenha
-     */
     public String getTxtSenha() {
         return txtSenha;
     }
 
-    /**
-     * @param txtSenha the txtSenha to set
-     */
     public void setTxtSenha(String txtSenha) {
         this.txtSenha = txtSenha;
     }
 
-    /**
-     * @return the imgPerfil
-     */
     public Byte getImgPerfil() {
         return imgPerfil;
     }
 
-    /**
-     * @param imgPerfil the imgPerfil to set
-     */
     public void setImgPerfil(Byte imgPerfil) {
         this.imgPerfil = imgPerfil;
     }
 
-    /**
-     * @return the sexo
-     */
     public String getSexo() {
         return sexo;
     }
 
-    /**
-     * @param sexo the sexo to set
-     */
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    /**
-     * @return the datNascimento
-     */
     public Date getDatNascimento() {
         return datNascimento;
     }
 
-    /**
-     * @param datNascimento the datNascimento to set
-     */
     public void setDatNascimento(Date datNascimento) {
         this.datNascimento = datNascimento;
     }
 
-    /**
-     * @return the codCidade
-     */
     public Cidade getCidade() {
         return cidade;
     }
 
-    /**
-     * @param cidade the Cidade to set
-     */
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-    
+   
 }

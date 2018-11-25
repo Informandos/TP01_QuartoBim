@@ -5,8 +5,8 @@ import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
 import model.dao.implementacao.AvaliacaoComentarioDAO;
 import model.dao.interfaces.InterfaceAvaliacaoComentarioDAO;
-import model.domain.AvaliacaoComentario;
-import model.domain.AvaliacaoDiario;
+import model.domainAntigo.AvaliacaoComentario;
+import model.domainAntigo.AvaliacaoDiario;
 import model.service.interfaces.InterfaceManterAvaliacaoComentario;
 
 public class ManterAvaliacaoComentario implements InterfaceManterAvaliacaoComentario{

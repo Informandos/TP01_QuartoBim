@@ -8,9 +8,9 @@ import model.dao.interfaces.InterfaceUsuarioDAO;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 import model.dao.interfaces.InterfaceUsuarioTagDAO;
-import model.domain.Tag;
-import model.domain.Usuario;
-import model.domain.UsuarioTag;
+import model.domainAntigo.Tag;
+import model.domainAntigo.Usuario;
+import model.domainAntigo.UsuarioTag;
 
 public class UsuarioTagDAO implements InterfaceUsuarioTagDAO{
 

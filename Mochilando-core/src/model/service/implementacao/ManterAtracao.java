@@ -5,7 +5,7 @@ import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
 import model.dao.implementacao.AtracaoDAO;
 import model.dao.interfaces.InterfaceAtracaoDAO;
-import model.domain.Atracao;
+import model.domainAntigo.Atracao;
 import model.service.interfaces.InterfaceManterAtracao;
 
 

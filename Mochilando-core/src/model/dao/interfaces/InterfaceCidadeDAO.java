@@ -6,7 +6,7 @@
 package model.dao.interfaces;
 
 import java.util.List;
-import model.domain.Cidade;
+import model.domainAntigo.Cidade;
 import util.db.exception.ExcecaoPersistencia;
 
 /**

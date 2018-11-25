@@ -8,7 +8,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.TipoAtracaoDAO;
 import model.dao.interfaces.InterfaceTipoAtracaoDAO;
-import model.domain.TipoAtracao;
+import model.domainAntigo.TipoAtracao;
 import model.service.interfaces.InterfaceManterTipoAtracao;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

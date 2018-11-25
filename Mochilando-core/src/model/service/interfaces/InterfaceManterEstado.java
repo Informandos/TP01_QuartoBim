@@ -6,7 +6,7 @@
 package model.service.interfaces;
 
 import java.util.List;
-import model.domain.Estado;
+import model.domainAntigo.Estado;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

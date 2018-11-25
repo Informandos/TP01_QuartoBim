@@ -8,7 +8,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.DiaDAO;
 import model.dao.interfaces.InterfaceDiaDAO;
-import model.domain.Dia;
+import model.domainAntigo.Dia;
 import model.service.interfaces.InterfaceManterDia;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

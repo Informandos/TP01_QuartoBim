@@ -8,9 +8,9 @@ import model.dao.interfaces.InterfaceTagDAO;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 import model.dao.interfaces.InterfaceTagDiarioDAO;
-import model.domain.Diario;
-import model.domain.Tag;
-import model.domain.TagDiario;
+import model.domainAntigo.Diario;
+import model.domainAntigo.Tag;
+import model.domainAntigo.TagDiario;
 
 public class TagDiarioDAO implements InterfaceTagDiarioDAO{
 

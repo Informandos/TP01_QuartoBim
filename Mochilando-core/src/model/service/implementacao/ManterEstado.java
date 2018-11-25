@@ -8,7 +8,7 @@ package model.service.implementacao;
 import java.util.List;
 import model.dao.implementacao.EstadoDAO;
 import model.dao.interfaces.InterfaceEstadoDAO;
-import model.domain.Estado;
+import model.domainAntigo.Estado;
 import model.service.interfaces.InterfaceManterEstado;
 import util.db.exception.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
