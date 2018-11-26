@@ -1,30 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.daoJPAImpl;
 
 import connection.ConnectionFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.daoJPA.InterfaceEstadoDAO;
-import model.domainJPA.Estado;
+import model.daoJPA.InterfaceFotoDAO;
+import model.domainAntigo.Foto;
 
 /**
  *
- *
- * @author Juliana
+ * @author lucca
  */
-public class EstadoDAO implements InterfaceEstadoDAO {
+public class FotoDAO implements InterfaceFotoDAO{
 
     @Override
-    public Long inserir(Estado estado) {
+    public Long inserir(Foto foto) {
         EntityManager em = new ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.persist(estado);
+            em.persist(foto);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -32,16 +26,16 @@ public class EstadoDAO implements InterfaceEstadoDAO {
             em.close();
         }
 
-        return estado.getCodEstado();
+        return foto.getSeqFoto();
     }
 
     @Override
-    public boolean atualizar(Estado estado) {
+    public boolean atualizar(Foto foto) {
         EntityManager em = new ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.merge(estado);
+            em.merge(foto);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -53,33 +47,33 @@ public class EstadoDAO implements InterfaceEstadoDAO {
     }
 
     @Override
-    public boolean deletar(Estado estado) {
+    public boolean deletar(Foto foto) {
         return true;
     }
 
     @Override
-    public Estado consultarPorId(Long codEstado) {
+    public Foto consultarPorId(Long seqFoto) {
         EntityManager em = new ConnectionFactory().getConnection();
 
-        Estado estado = null;
+        Foto foto = null;
 
         try {
-            estado = em.find(Estado.class, codEstado);
+            foto = em.find(Foto.class, seqFoto);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             em.close();
         }
-        return estado;
+        return foto;
     }
 
     @Override
-    public Estado consultarPorSigla(String sigla) {
+    public List<Foto> listarTudo() {
         EntityManager em = new ConnectionFactory().getConnection();
-        Estado estado = null;
+        List<Foto> fotos = null;
         try {
             em.getTransaction().begin();
-            estado = (Estado) em.createQuery("SELECT * from public.estado where sigla = "+ sigla).getSingleResult();
+            fotos = em.createQuery("SELECT * from public.foto").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -88,17 +82,16 @@ public class EstadoDAO implements InterfaceEstadoDAO {
             em.close();
         }
 
-        return estado;
+        return fotos;
     }
 
     @Override
-    public List<Estado> listarTudo() {
-        
+    public List<Foto> listarPorDia(Long seqDia) {
         EntityManager em = new ConnectionFactory().getConnection();
-        List<Estado> estados = null;
+        List<Foto> fotos = null;
         try {
             em.getTransaction().begin();
-            estados = em.createQuery("SELECT nom_estado, cod_estado from public.estado").getResultList();
+            fotos = em.createQuery("SELECT * from public.foto order by seq_dia").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -107,7 +100,7 @@ public class EstadoDAO implements InterfaceEstadoDAO {
             em.close();
         }
 
-        return estados;
+        return fotos;
     }
-
+    
 }
