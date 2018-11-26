@@ -15,7 +15,7 @@ import model.dao.interfaces.InterfaceDiarioDAO;
 import model.dao.interfaces.InterfaceEstadoDAO;
 import model.domainAntigo.Dia;
 import model.domainAntigo.Diario;
-import model.domainAntigo.Estado;
+import model.domainJPA.Estado;
 import util.db.exception.ExcecaoPersistencia;
 import util.db.ConnectionManager;
 

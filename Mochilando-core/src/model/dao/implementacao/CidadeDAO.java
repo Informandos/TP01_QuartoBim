@@ -16,7 +16,7 @@ import model.domainAntigo.Cidade;
 import util.db.exception.ExcecaoPersistencia;
 import java.sql.Connection;
 import model.dao.interfaces.InterfaceEstadoDAO;
-import model.domainAntigo.Estado;
+import model.domainJPA.Estado;
 import util.db.ConnectionManager;
 
 /**
