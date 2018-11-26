@@ -19,6 +19,7 @@ public class TipoAtracao implements Serializable{
     
     @Id
     @GeneratedValue (strategy=GenerationType.IDENTITY)
+    @Column(name = "cod_tipo_atracao")
     private Long codTipoAtracao;
     
     @Column(name = "desc_tipo_atracao")

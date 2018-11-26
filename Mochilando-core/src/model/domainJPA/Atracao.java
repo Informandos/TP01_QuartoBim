@@ -36,8 +36,9 @@ public class Atracao implements Serializable {
     private Cidade cidade;
     
     //Ha muitas atracoes para um mesmo tipo de atracao
+    //e cada atracao so tem 1 tipo
     @ManyToOne
-    @Column(name = "tipo_atracao")
+    @JoinColumn(name = "tipo_atracao")
     private TipoAtracao tipoAtracao;
     
     @Column(name = "nom_atracao")
@@ -55,6 +56,7 @@ public class Atracao implements Serializable {
     recebe mappedBy=atracoes (List do tipo do dono do outro lado)
     no parametro ManyToMany
     */
+
     @ManyToMany(mappedBy="atracoes", cascade=CascadeType.ALL)
     private List<Dia> dias;
 

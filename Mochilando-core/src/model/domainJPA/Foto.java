@@ -7,29 +7,32 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import model.domainAntigo.Dia;
 
 /**
  *
  * @author lucca
  */
-
 @Entity
-@Table(name="foto", schema="public")
-public class Foto implements Serializable{
-    
-    @Id
-    @GeneratedValue (strategy=GenerationType.IDENTITY)
-    private Long seqFoto;
-    
-    @OneToMany
-    @JoinColumn(name = "seq_Dia")
-    private Dia dia;
-    @Column(name = "foto")
-    private Byte Foto;
+@Table(name = "foto", schema = "public")
+public class Foto implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seq_foto")
+    private Long seqFoto;
+
+    //Ha muitas fotos para um mesmo dia
+    @ManyToOne
+    @JoinColumn(name = "seq_dia")
+    private Dia dia;
+
+    @Lob @Column(name = "foto")
+    private Byte Foto;
 
     public Long getSeqFoto() {
         return seqFoto;
@@ -54,5 +57,5 @@ public class Foto implements Serializable{
     public void setFoto(Byte Foto) {
         this.Foto = Foto;
     }
-    
+
 }

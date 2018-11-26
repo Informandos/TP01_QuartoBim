@@ -14,7 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import model.domainAntigo.Cidade;
 
 /**
  *
@@ -27,6 +26,7 @@ public class Usuario implements Serializable{
     
     @Id
     @GeneratedValue (strategy=GenerationType.IDENTITY)
+    @Column(name = "cod_usuario")
     private Long codUsuario;
     
     @Column(name = "nom_usuario")

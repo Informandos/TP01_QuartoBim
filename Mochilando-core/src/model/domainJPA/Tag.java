@@ -23,6 +23,7 @@ public class Tag implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cod_tag")
     private Long codTag;
 
     @Column(name = "desc_tag")
@@ -30,17 +31,17 @@ public class Tag implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tag_diario",
-                joinColumns = {
-                 @JoinColumn(name = "cod_diario")},
-                inverseJoinColumns = {
+            joinColumns = {
+                @JoinColumn(name = "cod_diario")},
+            inverseJoinColumns = {
                 @JoinColumn(name = "cod_tag")})
     private List<Diario> diarios;
-    
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "usuario_tag",
-                joinColumns = {
-                 @JoinColumn(name = "cod_usuario")},
-                inverseJoinColumns = {
+            joinColumns = {
+                @JoinColumn(name = "cod_usuario")},
+            inverseJoinColumns = {
                 @JoinColumn(name = "cod_tag")})
     private List<Diario> usuarios;
 

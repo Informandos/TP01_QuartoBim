@@ -31,13 +31,13 @@ public class Dia implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "seq_atracao")
+    @Column(name = "seq_dia")
     private Long seqDia;
 
     //Ha muitos dias em um mesmo diario
     @ManyToOne
     @JoinColumn(name = "cod_diario")
-    private model.domainAntigo.Diario diario;
+    private Diario diario;
 
     @Column(name = "txt_dia")
     private String txtDia;
@@ -64,6 +64,7 @@ public class Dia implements Serializable {
     private List<Atracao> atracoes;
 
     
+    
 
     /**
      * @return the seqDia
@@ -82,14 +83,14 @@ public class Dia implements Serializable {
     /**
      * @return the diario
      */
-    public model.domainAntigo.Diario getDiario() {
+    public Diario getDiario() {
         return diario;
     }
 
     /**
      * @param diario the diario to set
      */
-    public void setDiario(model.domainAntigo.Diario diario) {
+    public void setDiario(Diario diario) {
         this.diario = diario;
     }
 
