@@ -20,8 +20,32 @@
                     <p:button icon="ui-icon-search" style="width: 42px ; height: 42px"/>
                 </p:outputLabel>
                 <p:commandButton icon="ui-icon-person" style="width: 42px ; height: 42px" action="perfil.jsf"/>
-                <p:commandButton icon="ui-icon-plus" style="width: 42px ; height: 42px" action="CriarDiario.jsf"/>
-                <p:commandButton icon="ui-icon-help" style="width: 42px ; height: 42px" action="ajuda.jsf"/>
+                <p:commandButton icon="ui-icon-help" style="width: 42px ; height: 42px" type="button" onclick="PF('ajuda').show();"/>
+                <p:dialog header="Ajuda" widgetVar="ajuda" modal="true" height="440" width="330">
+                    <p:growl>
+                        <p:autoUpdate />
+                    </p:growl>
+                    <p:panelMenu style="width:300px">
+                        <p:submenu label="Artigos Mias lidos">
+                            <p:menuitem value="Fazer Login" ajax="false"/>
+                            <p:menuitem value="Criar Uma Conta" ajax="false"/>
+                            <p:menuitem value="Esqueceu a Senha" ajax="false"/>
+                            <p:menuitem value="Fale Consoco" ajax="false"/>
+                        </p:submenu>
+                        <p:separator />
+                        <p:submenu label="Configurações de Conta">
+                            <p:menuitem value="Trocar foto de prefil" ajax="false"/>
+                            <p:menuitem value="Apagar post" ajax="false"/>
+                        </p:submenu>
+                        <p:separator />
+                        <p:submenu label="Solucionar Problemas">
+                            <p:menuitem value="Item1" ajax="false"/>
+                            <p:menuitem value="Item2" ajax="false"/>
+                            <p:menuitem value="Item3" ajax="false"/>
+                            <p:menuitem value="Item4" ajax="false"/>
+                        </p:submenu>
+                    </p:panelMenu>
+                </p:dialog>
             </h:form>
         </div>
         <ui:insert name="corpo"></ui:insert>
