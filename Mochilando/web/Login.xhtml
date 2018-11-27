@@ -14,12 +14,12 @@
                 <br/>
                 <h1>Login</h1>
                 <br/>
-                <h:outputLabel for="usuario" value="Usuario: " />
-                <p:inputText id="usuario" value="#{loginMB.usuario}" required="true" label="email" />
+                <p:inputText id="usuario" value="#{loginMB.usuario}" required="true"/>
+                <p:watermark for="usuario" value="E-mail"/>
                 <br/>
                 <br/>
-                <h:outputLabel for="password" value="Senha: " />
-                <p:password id="password" value="#{loginMB.senha}" required="true" label="password" />
+                <p:password id="senha" value="#{loginMB.senha}" required="true"/>
+                <p:watermark for="senha" value="Senha"/>
                 <br/>
                 <h:outputLink value="recuperacaoSenha.jsf">
                     <h:outputLabel value="Esqueceu a senha?"/>
