@@ -5,6 +5,8 @@
  */
 package model.dao.interfaces;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 import model.domainAntigo.Dia;
 import util.db.exception.ExcecaoPersistencia;
@@ -13,11 +15,11 @@ import util.db.exception.ExcecaoPersistencia;
  *
  * @author Juliana
  */
-public interface InterfaceDiaDAO {
-    public Long inserir(Dia dia) throws ExcecaoPersistencia;
-    public boolean atualizar(Dia dia) throws ExcecaoPersistencia;
-    public boolean deletar(Dia dia) throws ExcecaoPersistencia;
-    public Dia consultarPorId(Long seqDia) throws ExcecaoPersistencia;
-    public List<Dia> listarPorCodDiario(Long codDiario) throws ExcecaoPersistencia; 
-    public List<Dia> listarTudo() throws ExcecaoPersistencia;
+public interface InterfaceDiaDAO extends Remote{
+    public Long inserir(Dia dia) throws ExcecaoPersistencia,RemoteException;
+    public boolean atualizar(Dia dia) throws ExcecaoPersistencia,RemoteException;
+    public boolean deletar(Dia dia) throws ExcecaoPersistencia,RemoteException;
+    public Dia consultarPorId(Long seqDia) throws ExcecaoPersistencia,RemoteException;
+    public List<Dia> listarPorCodDiario(Long codDiario) throws ExcecaoPersistencia,RemoteException; 
+    public List<Dia> listarTudo() throws ExcecaoPersistencia,RemoteException;
 }

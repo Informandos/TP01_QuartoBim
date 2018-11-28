@@ -5,6 +5,7 @@
  */
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ import util.db.ConnectionManager;
 public class CidadeDAO implements InterfaceCidadeDAO {
 
     @Override
-    public Long inserir(Cidade cidade) throws ExcecaoPersistencia {
+    public Long inserir(Cidade cidade) throws ExcecaoPersistencia,RemoteException {
         if (cidade == null) {
 
             throw new ExcecaoPersistencia("Cidade nao pode ser null");
@@ -69,7 +70,7 @@ public class CidadeDAO implements InterfaceCidadeDAO {
     }
 
     @Override
-    public boolean atualizar(Cidade cidade) throws ExcecaoPersistencia {
+    public boolean atualizar(Cidade cidade) throws ExcecaoPersistencia,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -98,7 +99,7 @@ public class CidadeDAO implements InterfaceCidadeDAO {
     }
 
     @Override
-    public boolean deletar(Cidade cidade) throws ExcecaoPersistencia {
+    public boolean deletar(Cidade cidade) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -119,7 +120,7 @@ public class CidadeDAO implements InterfaceCidadeDAO {
     }
 
     @Override
-    public Cidade consultarPorId(Long codCidade) throws ExcecaoPersistencia {
+    public Cidade consultarPorId(Long codCidade) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -155,7 +156,7 @@ public class CidadeDAO implements InterfaceCidadeDAO {
     }
 
     @Override
-    public List<Cidade> listarPorCodEstado(Long codEstado) throws ExcecaoPersistencia {
+    public List<Cidade> listarPorCodEstado(Long codEstado) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -200,7 +201,7 @@ public class CidadeDAO implements InterfaceCidadeDAO {
     }
 
     @Override
-    public List<Cidade> listarTudo() throws ExcecaoPersistencia {
+    public List<Cidade> listarTudo() throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 

@@ -1,5 +1,6 @@
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import model.dao.interfaces.InterfaceAvaliacaoComentarioDAO;
 import model.domainAntigo.AvaliacaoComentario;
 import java.sql.Connection;
@@ -56,7 +57,7 @@ public class AvaliacaoComentarioDAO implements InterfaceAvaliacaoComentarioDAO{
     }
 
     @Override
-    public boolean atualizar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia {
+    public boolean atualizar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia,RemoteException {
         try{
             Connection conn = ConnectionManager.getInstance().getConnection();
             
@@ -83,7 +84,7 @@ public class AvaliacaoComentarioDAO implements InterfaceAvaliacaoComentarioDAO{
     }
 
     @Override
-    public boolean deletar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia {
+    public boolean deletar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -104,7 +105,7 @@ public class AvaliacaoComentarioDAO implements InterfaceAvaliacaoComentarioDAO{
     }
 
     @Override
-    public AvaliacaoComentario consultarPorId(Long seqAvaliacao) throws ExcecaoPersistencia {
+    public AvaliacaoComentario consultarPorId(Long seqAvaliacao) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -140,7 +141,7 @@ public class AvaliacaoComentarioDAO implements InterfaceAvaliacaoComentarioDAO{
     }
 
     @Override
-    public int consultarNumAvPositivas(Long seqComentario) throws ExcecaoPersistencia {
+    public int consultarNumAvPositivas(Long seqComentario) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -176,7 +177,7 @@ public class AvaliacaoComentarioDAO implements InterfaceAvaliacaoComentarioDAO{
     }
 
     @Override
-    public int consultarNumAvNegativas(Long seqComentario) throws ExcecaoPersistencia {
+    public int consultarNumAvNegativas(Long seqComentario) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -212,7 +213,7 @@ public class AvaliacaoComentarioDAO implements InterfaceAvaliacaoComentarioDAO{
     }
 
     @Override
-    public List<AvaliacaoComentario> listarPorDiario(Long codDiario) throws ExcecaoPersistencia {
+    public List<AvaliacaoComentario> listarPorDiario(Long codDiario) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -259,7 +260,7 @@ public class AvaliacaoComentarioDAO implements InterfaceAvaliacaoComentarioDAO{
     }
 
     @Override
-    public List<AvaliacaoComentario> listarTudo(Long seqAvaliacao) throws ExcecaoPersistencia {
+    public List<AvaliacaoComentario> listarTudo(Long seqAvaliacao) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 

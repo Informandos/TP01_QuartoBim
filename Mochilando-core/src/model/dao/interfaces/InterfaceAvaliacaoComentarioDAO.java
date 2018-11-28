@@ -5,6 +5,8 @@
  */
 package model.dao.interfaces;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 import model.domainAntigo.AvaliacaoComentario;
 import model.domainAntigo.Comentario;
@@ -15,13 +17,13 @@ import util.db.exception.ExcecaoPersistencia;
  *
  * @author Juliana
  */
-public interface InterfaceAvaliacaoComentarioDAO {
-    public Long inserir(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia;
-    public boolean atualizar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia;
-    public boolean deletar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia;
-    public AvaliacaoComentario consultarPorId(Long seqAvaliacao) throws ExcecaoPersistencia;
-    public int consultarNumAvPositivas(Long seqComentario) throws ExcecaoPersistencia;
-    public int consultarNumAvNegativas(Long seqComentario) throws ExcecaoPersistencia;
-    public List <AvaliacaoComentario> listarPorDiario(Long codDiario) throws ExcecaoPersistencia;
-    public List <AvaliacaoComentario> listarTudo(Long seqAvaliacao) throws ExcecaoPersistencia;
+public interface InterfaceAvaliacaoComentarioDAO extends Remote {
+    public Long inserir(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia,RemoteException;
+    public boolean atualizar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia,RemoteException;
+    public boolean deletar(AvaliacaoComentario avaliacaoComenario) throws ExcecaoPersistencia,RemoteException;
+    public AvaliacaoComentario consultarPorId(Long seqAvaliacao) throws ExcecaoPersistencia,RemoteException;
+    public int consultarNumAvPositivas(Long seqComentario) throws ExcecaoPersistencia,RemoteException;
+    public int consultarNumAvNegativas(Long seqComentario) throws ExcecaoPersistencia,RemoteException;
+    public List <AvaliacaoComentario> listarPorDiario(Long codDiario) throws ExcecaoPersistencia,RemoteException;
+    public List <AvaliacaoComentario> listarTudo(Long seqAvaliacao) throws ExcecaoPersistencia,RemoteException;
 }

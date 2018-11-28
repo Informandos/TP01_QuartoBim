@@ -1,8 +1,11 @@
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.interfaces.InterfaceDiarioDAO;
 import model.dao.interfaces.InterfaceTagDAO;
 import util.db.exception.ExcecaoPersistencia;
@@ -115,7 +118,12 @@ public class TagDiarioDAO implements InterfaceTagDiarioDAO{
             if (rs.next()) {
                 tagD = new TagDiario();
                 tagD.setSeqTagDiario(rs.getLong("seq_tag_diario"));
-                Diario diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                Diario diario = null;
+                try {
+                    diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                } catch (RemoteException ex) {
+                    Logger.getLogger(TagDiarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 tagD.setDiario(diario);
                 Tag tag = tagDAO.consultarPorId(rs.getLong("cod_tag"));
                 tagD.setTag(tag);
@@ -149,7 +157,12 @@ public class TagDiarioDAO implements InterfaceTagDiarioDAO{
                 do {
                     TagDiario tagD = new TagDiario();
                     tagD.setSeqTagDiario(rs.getLong("seq_tag_diario"));
-                    Diario diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                    Diario diario = null;
+                    try {
+                        diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(TagDiarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     tagD.setDiario(diario);
                     Tag tag = tagDAO.consultarPorId(rs.getLong("cod_tag"));
                     tagD.setTag(tag);
@@ -189,7 +202,12 @@ public class TagDiarioDAO implements InterfaceTagDiarioDAO{
                 do {
                     TagDiario tagD = new TagDiario();
                     tagD.setSeqTagDiario(rs.getLong("seq_tag_diario"));
-                    Diario diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                    Diario diario = null;
+                    try {
+                        diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(TagDiarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     tagD.setDiario(diario);
                     Tag tag = tagDAO.consultarPorId(rs.getLong("cod_tag"));
                     tagD.setTag(tag);
@@ -228,7 +246,12 @@ public class TagDiarioDAO implements InterfaceTagDiarioDAO{
                 do {
                     TagDiario tagD = new TagDiario();
                     tagD.setSeqTagDiario(rs.getLong("seq_tag_diario"));
-                    Diario diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                    Diario diario = null;
+                    try {
+                        diario = diarioDAO.consultarPorId(rs.getLong("cod_diario"));
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(TagDiarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     tagD.setDiario(diario);
                     Tag tag = tagDAO.consultarPorId(rs.getLong("cod_tag"));
                     tagD.setTag(tag);

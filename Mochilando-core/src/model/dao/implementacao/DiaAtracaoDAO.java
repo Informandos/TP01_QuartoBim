@@ -5,6 +5,7 @@
  */
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,10 +25,10 @@ import util.db.exception.ExcecaoPersistencia;
  *
  * @author Juliana
  */
-public class DiaAtracaoDAO implements InterfaceDiaAtracaoDAO {
+public class DiaAtracaoDAO implements InterfaceDiaAtracaoDAO{
 
     @Override
-    public Long inserir(DiaAtracao diaAtracao) throws ExcecaoPersistencia {
+    public Long inserir(DiaAtracao diaAtracao) throws ExcecaoPersistencia,RemoteException{
         if (diaAtracao == null) {
 
             throw new ExcecaoPersistencia("DiaAtracao nao pode ser null");
@@ -66,7 +67,7 @@ public class DiaAtracaoDAO implements InterfaceDiaAtracaoDAO {
     }
 
     @Override
-    public boolean atualizar(DiaAtracao diaAtracao) throws ExcecaoPersistencia {
+    public boolean atualizar(DiaAtracao diaAtracao) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -95,7 +96,7 @@ public class DiaAtracaoDAO implements InterfaceDiaAtracaoDAO {
     }
 
     @Override
-    public boolean deletar(DiaAtracao diaAtracao) throws ExcecaoPersistencia {
+    public boolean deletar(DiaAtracao diaAtracao) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -116,7 +117,7 @@ public class DiaAtracaoDAO implements InterfaceDiaAtracaoDAO {
     }
 
     @Override
-    public DiaAtracao consultarPorId(Long seqDiaAtracao) throws ExcecaoPersistencia {
+    public DiaAtracao consultarPorId(Long seqDiaAtracao) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -154,7 +155,7 @@ public class DiaAtracaoDAO implements InterfaceDiaAtracaoDAO {
     }
 
     @Override
-    public List<DiaAtracao> listarPorSeqDia(Long seqDia) throws ExcecaoPersistencia {
+    public List<DiaAtracao> listarPorSeqDia(Long seqDia) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -200,7 +201,7 @@ public class DiaAtracaoDAO implements InterfaceDiaAtracaoDAO {
     }
 
     @Override
-    public List<DiaAtracao> listarTudo() throws ExcecaoPersistencia {
+    public List<DiaAtracao> listarTudo() throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 

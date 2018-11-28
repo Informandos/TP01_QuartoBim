@@ -1,5 +1,6 @@
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import model.dao.interfaces.InterfaceAtracaoDAO;
 import model.domainAntigo.Atracao;
 import java.sql.Connection;
@@ -20,7 +21,7 @@ import util.db.ConnectionManager;
 public class AtracaoDAO implements InterfaceAtracaoDAO {
 
     @Override
-    public Long inserir(Atracao atracao) throws ExcecaoPersistencia {
+    public Long inserir(Atracao atracao) throws ExcecaoPersistencia,RemoteException{
         if(atracao == null){
             throw new ExcecaoPersistencia("Atração não pode ser null");
         }
@@ -60,7 +61,7 @@ public class AtracaoDAO implements InterfaceAtracaoDAO {
     }
 
     @Override
-    public boolean atualizar(Atracao atracao) throws ExcecaoPersistencia {
+    public boolean atualizar(Atracao atracao) throws ExcecaoPersistencia,RemoteException {
         try{
             Connection conn = ConnectionManager.getInstance().getConnection();
             
@@ -89,7 +90,7 @@ public class AtracaoDAO implements InterfaceAtracaoDAO {
     }
 
     @Override
-    public boolean deletar(Atracao atracao) throws ExcecaoPersistencia {
+    public boolean deletar(Atracao atracao) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -110,7 +111,7 @@ public class AtracaoDAO implements InterfaceAtracaoDAO {
     }
 
     @Override
-    public Atracao consultarPorId(Long codAtracao) throws ExcecaoPersistencia {
+    public Atracao consultarPorId(Long codAtracao) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -149,7 +150,7 @@ public class AtracaoDAO implements InterfaceAtracaoDAO {
     }
 
     @Override
-    public List<Atracao> listarPorCodCidade(Long codCidade) throws ExcecaoPersistencia {
+    public List<Atracao> listarPorCodCidade(Long codCidade) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -193,7 +194,7 @@ public class AtracaoDAO implements InterfaceAtracaoDAO {
     }
 
     @Override
-    public List<Atracao> listarPorCodEstado(Long codEstado) throws ExcecaoPersistencia {
+    public List<Atracao> listarPorCodEstado(Long codEstado) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -241,7 +242,7 @@ public class AtracaoDAO implements InterfaceAtracaoDAO {
     }
 
     @Override
-    public List<Atracao> listarPorCodTipoAtracao(Long codTipoAtracao) throws ExcecaoPersistencia {
+    public List<Atracao> listarPorCodTipoAtracao(Long codTipoAtracao) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -287,7 +288,7 @@ public class AtracaoDAO implements InterfaceAtracaoDAO {
     }
 
     @Override
-    public List<Atracao> listarTudo() throws ExcecaoPersistencia {
+    public List<Atracao> listarTudo() throws ExcecaoPersistencia,RemoteException {
          try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 

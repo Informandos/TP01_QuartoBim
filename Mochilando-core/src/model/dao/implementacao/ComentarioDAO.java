@@ -1,5 +1,6 @@
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ import util.db.exception.ExcecaoPersistencia;
 public class ComentarioDAO implements InterfaceComentarioDAO {
 
     @Override
-    public Long inserir(Comentario comentario) throws ExcecaoPersistencia {
+    public Long inserir(Comentario comentario) throws ExcecaoPersistencia,RemoteException {
         if (comentario == null) {
             throw new ExcecaoPersistencia("Cidade não pode ser null");
         }
@@ -56,7 +57,7 @@ public class ComentarioDAO implements InterfaceComentarioDAO {
     }
 
     @Override
-    public boolean atualizar(Comentario comentario) throws ExcecaoPersistencia {
+    public boolean atualizar(Comentario comentario) throws ExcecaoPersistencia,RemoteException {
         try{
             Connection conn = ConnectionManager.getInstance().getConnection();
             
@@ -82,7 +83,7 @@ public class ComentarioDAO implements InterfaceComentarioDAO {
     }
 
     @Override
-    public boolean deletar(Comentario comentario) throws ExcecaoPersistencia {
+    public boolean deletar(Comentario comentario) throws ExcecaoPersistencia ,RemoteException{
         try{
             Connection conn = ConnectionManager.getInstance().getConnection();
             
@@ -104,7 +105,7 @@ public class ComentarioDAO implements InterfaceComentarioDAO {
     }
 
     @Override
-    public Comentario consultarPorId(Long seqComentario) throws ExcecaoPersistencia {
+    public Comentario consultarPorId(Long seqComentario) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -139,7 +140,7 @@ public class ComentarioDAO implements InterfaceComentarioDAO {
     }
 
     @Override
-    public List<Comentario> listarPorCodDiario(Long codDiario) throws ExcecaoPersistencia {
+    public List<Comentario> listarPorCodDiario(Long codDiario) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -180,7 +181,7 @@ public class ComentarioDAO implements InterfaceComentarioDAO {
     }
 
     @Override
-    public List<Comentario> listarTudo() throws ExcecaoPersistencia {
+    public List<Comentario> listarTudo() throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 

@@ -1,5 +1,6 @@
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import model.dao.interfaces.InterfaceAvaliacaoDiarioDAO;
 import model.domainAntigo.AvaliacaoDiario;
 import java.sql.Connection;
@@ -18,7 +19,7 @@ import util.db.ConnectionManager;
 public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
 
     @Override
-    public Long inserir(AvaliacaoDiario avaliacaoDiario) throws ExcecaoPersistencia {
+    public Long inserir(AvaliacaoDiario avaliacaoDiario) throws ExcecaoPersistencia,RemoteException {
          if(avaliacaoDiario == null){
             throw new ExcecaoPersistencia("Avaliação do Diário não pode ser null");
         }
@@ -56,7 +57,7 @@ public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
     }
 
     @Override
-    public boolean atualizar(AvaliacaoDiario avaliacaoDiario) throws ExcecaoPersistencia {
+    public boolean atualizar(AvaliacaoDiario avaliacaoDiario) throws ExcecaoPersistencia ,RemoteException{
         try{
             Connection conn = ConnectionManager.getInstance().getConnection();
             
@@ -83,7 +84,7 @@ public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
     }
 
     @Override
-    public boolean deletar(AvaliacaoDiario avaliacaoDiario) throws ExcecaoPersistencia {
+    public boolean deletar(AvaliacaoDiario avaliacaoDiario) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -104,7 +105,7 @@ public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
     }
 
     @Override
-    public AvaliacaoDiario consultarPorId(Long seqAvaliacao) throws ExcecaoPersistencia{
+    public AvaliacaoDiario consultarPorId(Long seqAvaliacao) throws ExcecaoPersistencia,RemoteException{
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -141,7 +142,7 @@ public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
     }
 
     @Override
-    public int consultarNumAvPositivas(Long codDiario) throws ExcecaoPersistencia {
+    public int consultarNumAvPositivas(Long codDiario) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -177,7 +178,7 @@ public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
     }
 
     @Override
-    public int consultarNumAvNegativas(Long codDiario) throws ExcecaoPersistencia {
+    public int consultarNumAvNegativas(Long codDiario) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -213,7 +214,7 @@ public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
     }
 
     @Override
-    public List<AvaliacaoDiario> listarPorDiario(Long codDiario) throws ExcecaoPersistencia {
+    public List<AvaliacaoDiario> listarPorDiario(Long codDiario) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
@@ -256,7 +257,7 @@ public class AvaliacaoDiarioDAO implements InterfaceAvaliacaoDiarioDAO{
     
 
     @Override
-    public List<AvaliacaoDiario> listarTudo() throws ExcecaoPersistencia {
+    public List<AvaliacaoDiario> listarTudo() throws ExcecaoPersistencia,RemoteException {
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
 
