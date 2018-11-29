@@ -149,7 +149,6 @@ public class ProxyManterDiario implements InterfaceManterDiario{
         return result;
     }
 
-    @Override
     public List<Diario> atualizarPagInicial(Long codUsuario) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
         manterDiario = new ArrayList();
         manterDiario.add("Diario");
@@ -166,7 +165,6 @@ public class ProxyManterDiario implements InterfaceManterDiario{
         return result;
     }
 
-    @Override
     public List<Diario> pesquisarDiario(String textoBusca) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
         manterDiario = new ArrayList();
         manterDiario.add("Diario");

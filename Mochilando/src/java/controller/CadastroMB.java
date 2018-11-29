@@ -6,7 +6,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import model.domain.Cidade;
 import org.primefaces.model.UploadedFile;
-
+import model.dao.implementacao.UsuarioDAO;
 @SessionScoped
 @Named
 public class CadastroMB implements Serializable{

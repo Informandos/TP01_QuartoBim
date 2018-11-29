@@ -5,6 +5,7 @@
  */
 package model.dao.implementacao;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ import util.db.ConnectionManager;
 public class DiaDAO implements InterfaceDiaDAO {
 
     @Override
-    public Long inserir(Dia dia) throws ExcecaoPersistencia {
+    public Long inserir(Dia dia) throws ExcecaoPersistencia,RemoteException {
         if (dia == null) {
 
             throw new ExcecaoPersistencia("Dia nao pode ser null");
@@ -67,7 +68,7 @@ public class DiaDAO implements InterfaceDiaDAO {
     }
 
     @Override
-    public boolean atualizar(Dia dia) throws ExcecaoPersistencia {
+    public boolean atualizar(Dia dia) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -99,7 +100,7 @@ public class DiaDAO implements InterfaceDiaDAO {
     }
 
     @Override
-    public boolean deletar(Dia dia) throws ExcecaoPersistencia {
+    public boolean deletar(Dia dia) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -120,7 +121,7 @@ public class DiaDAO implements InterfaceDiaDAO {
     }
 
     @Override
-    public Dia consultarPorId(Long seqDia) throws ExcecaoPersistencia {
+    public Dia consultarPorId(Long seqDia) throws ExcecaoPersistencia,RemoteException {
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -156,7 +157,7 @@ public class DiaDAO implements InterfaceDiaDAO {
     }
 
     @Override
-    public List<Dia> listarPorCodDiario(Long codDiario) throws ExcecaoPersistencia {
+    public List<Dia> listarPorCodDiario(Long codDiario) throws ExcecaoPersistencia ,RemoteException{
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
@@ -195,7 +196,7 @@ public class DiaDAO implements InterfaceDiaDAO {
     }
 
     @Override
-    public List<Dia> listarTudo() throws ExcecaoPersistencia {
+    public List<Dia> listarTudo() throws ExcecaoPersistencia,RemoteException {
         try {
             Connection connection = ConnectionManager.getInstance().getConnection();
 
