@@ -5,7 +5,10 @@
  */
 package model.service.implementacao;
 
+import java.rmi.RemoteException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.implementacao.DiaDAO;
 import model.dao.interfaces.InterfaceDiaDAO;
 import model.domainAntigo.Dia;
@@ -39,7 +42,12 @@ public class ManterDia implements InterfaceManterDia {
         if( dia.getDataDia() == null)
             throw new ExcecaoNegocio("Obrigatório informar a data do dia");
         
-        Long result = diaDAO.inserir(dia);
+        Long result = null;
+        try {
+            result = diaDAO.inserir(dia);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
         
     }
@@ -58,31 +66,56 @@ public class ManterDia implements InterfaceManterDia {
         if( dia.getDataDia() == null)
             throw new ExcecaoNegocio("Obrigatório informar a data do dia");
         
-        boolean result = diaDAO.atualizar(dia);
+        boolean result = false;
+        try {
+            result = diaDAO.atualizar(dia);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public boolean excluir(Dia dia) throws ExcecaoPersistencia, ExcecaoNegocio {
-        boolean result = diaDAO.deletar(dia);
+        boolean result = false;
+        try {
+            result = diaDAO.deletar(dia);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;    
     }
 
     @Override
     public Dia pesquisarPorId(Long seqDia) throws ExcecaoPersistencia {
-        Dia result = diaDAO.consultarPorId(seqDia);
+        Dia result = null;
+        try {
+            result = diaDAO.consultarPorId(seqDia);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Dia> pesquisarPorCodDiario(Long codDiario) throws ExcecaoPersistencia {
-        List<Dia> result = diaDAO.listarPorCodDiario(codDiario);
+        List<Dia> result = null;
+        try {
+            result = diaDAO.listarPorCodDiario(codDiario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Dia> pesquisarTodos() throws ExcecaoPersistencia {
-        List<Dia> result = diaDAO.listarTudo();
+        List<Dia> result = null;
+        try {
+            result = diaDAO.listarTudo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
     

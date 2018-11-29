@@ -1,8 +1,11 @@
 package model.service.implementacao;
 
+import java.rmi.RemoteException;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.implementacao.AtracaoDAO;
 import model.dao.interfaces.InterfaceAtracaoDAO;
 import model.domainAntigo.Atracao;
@@ -39,7 +42,12 @@ public class ManterAtracao implements InterfaceManterAtracao{
             throw new ExcecaoNegocio("Obrigatório informar a longitude da atracao");
         }
         
-        Long result = atracaoDAO.inserir(atracao);
+        Long result = null;
+        try {
+            result = atracaoDAO.inserir(atracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
@@ -64,43 +72,78 @@ public class ManterAtracao implements InterfaceManterAtracao{
             throw new ExcecaoNegocio("Obrigatório informar a longitude da atracao");
         }
         
-        boolean result = atracaoDAO.atualizar(atracao);
+        boolean result = false;
+        try {
+            result = atracaoDAO.atualizar(atracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public boolean excluir(Atracao atracao) throws ExcecaoPersistencia, ExcecaoNegocio {
-        boolean result = atracaoDAO.deletar(atracao);
+        boolean result = false;
+        try {
+            result = atracaoDAO.deletar(atracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public Atracao pesquisarPorId(Long id) throws ExcecaoPersistencia {
-        Atracao result = atracaoDAO.consultarPorId(id);
+        Atracao result = null;
+        try {
+            result = atracaoDAO.consultarPorId(id);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Atracao> pesquisarPorCodEstado(Long codEstado) throws ExcecaoPersistencia {
-        List<Atracao> result = atracaoDAO.listarPorCodEstado(codEstado);
+        List<Atracao> result = null;
+        try {
+            result = atracaoDAO.listarPorCodEstado(codEstado);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Atracao> pesquisarPorCodTipoAtracao(Long codTipoAtracao) throws ExcecaoPersistencia {
-        List<Atracao> result = atracaoDAO.listarPorCodTipoAtracao(codTipoAtracao);
+        List<Atracao> result = null;
+        try {
+            result = atracaoDAO.listarPorCodTipoAtracao(codTipoAtracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Atracao> pesquisarTodos() throws ExcecaoPersistencia {
-        List<Atracao> result = atracaoDAO.listarTudo();
+        List<Atracao> result = null;
+        try {
+            result = atracaoDAO.listarTudo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Atracao> pesquisarPorCodCidade(Long codCidade) throws ExcecaoPersistencia {
-        List<Atracao> result = atracaoDAO.listarPorCodCidade(codCidade);
+        List<Atracao> result = null;
+        try {
+            result = atracaoDAO.listarPorCodCidade(codCidade);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
     

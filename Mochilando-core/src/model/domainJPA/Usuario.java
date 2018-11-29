@@ -51,6 +51,15 @@ public class Usuario implements Serializable{
     @ManyToMany(mappedBy="usuarios", cascade = CascadeType.ALL)
     List<Tag> tags;
 
+    public Usuario(String nomeUsuario, String sobrenomeUsuario, String txtSenha, String sexo, Date datNascimento, Cidade cidade) {
+        this.nomeUsuario = nomeUsuario;
+        this.sobrenomeUsuario = sobrenomeUsuario;
+        this.txtSenha = txtSenha;
+        this.sexo = sexo;
+        this.datNascimento = datNascimento;
+        this.cidade = cidade;
+    }
+
     public Long getCodUsuario() {
         return codUsuario;
     }

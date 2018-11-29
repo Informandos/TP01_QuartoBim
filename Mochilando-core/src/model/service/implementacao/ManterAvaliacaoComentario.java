@@ -1,8 +1,11 @@
 package model.service.implementacao;
 
+import java.rmi.RemoteException;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.implementacao.AvaliacaoComentarioDAO;
 import model.dao.interfaces.InterfaceAvaliacaoComentarioDAO;
 import model.domainAntigo.AvaliacaoComentario;
@@ -32,7 +35,12 @@ public class ManterAvaliacaoComentario implements InterfaceManterAvaliacaoComent
             throw new ExcecaoNegocio("Obrigatório informar o código do usuário");
         }
         
-        Long result = aComntDAO.inserir(avaliacaoComentario);
+        Long result = null;
+        try {
+            result = aComntDAO.inserir(avaliacaoComentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
@@ -51,43 +59,78 @@ public class ManterAvaliacaoComentario implements InterfaceManterAvaliacaoComent
             throw new ExcecaoNegocio("Obrigatório informar o código do usuário");
         }
         
-        boolean result = aComntDAO.atualizar(avaliacaoComentario);
+        boolean result = false;
+        try {
+            result = aComntDAO.atualizar(avaliacaoComentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public boolean excluir(AvaliacaoComentario avaliacaoComentario) throws ExcecaoPersistencia, ExcecaoNegocio {
-        boolean result = aComntDAO.deletar(avaliacaoComentario);
+        boolean result = false;
+        try {
+            result = aComntDAO.deletar(avaliacaoComentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public AvaliacaoComentario pesquisarPorId(Long seqAvaliacao) throws ExcecaoPersistencia {
-        AvaliacaoComentario result = aComntDAO.consultarPorId(seqAvaliacao);
+        AvaliacaoComentario result = null;
+        try {
+            result = aComntDAO.consultarPorId(seqAvaliacao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public int pesquisarNumAvPositivas(Long seqComentario) throws ExcecaoPersistencia {
-        int result = aComntDAO.consultarNumAvPositivas(seqComentario);
+        int result = 0;
+        try {
+            result = aComntDAO.consultarNumAvPositivas(seqComentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public int pesquisarNumAvNegativas(Long seqComentario) throws ExcecaoPersistencia {
-        int result = aComntDAO.consultarNumAvNegativas(seqComentario);
+        int result = 0;
+        try {
+            result = aComntDAO.consultarNumAvNegativas(seqComentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<AvaliacaoComentario> pesquisarPorDiario(Long codDiario) throws ExcecaoPersistencia {
-        List<AvaliacaoComentario> result = aComntDAO.listarPorDiario(codDiario);
+        List<AvaliacaoComentario> result = null;
+        try {
+            result = aComntDAO.listarPorDiario(codDiario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<AvaliacaoComentario> pesquisarTodos(Long seqAvaliacao) throws ExcecaoPersistencia {
-        List<AvaliacaoComentario> result = aComntDAO.listarTudo(seqAvaliacao);
+        List<AvaliacaoComentario> result = null;
+        try {
+            result = aComntDAO.listarTudo(seqAvaliacao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterAvaliacaoComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
    

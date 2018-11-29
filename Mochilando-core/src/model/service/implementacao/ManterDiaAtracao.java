@@ -1,6 +1,9 @@
 package model.service.implementacao;
 
+import java.rmi.RemoteException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.implementacao.DiaAtracaoDAO;
 import model.dao.interfaces.InterfaceDiaAtracaoDAO;
 import model.domainAntigo.DiaAtracao;
@@ -28,7 +31,12 @@ public class ManterDiaAtracao implements InterfaceManterDiaAtracao{
             throw new ExcecaoNegocio("Obrigatório informar a data da atração");
         }
         
-        Long result = diaADAO.inserir(diaAtracao);
+        Long result = null;
+        try {
+            result = diaADAO.inserir(diaAtracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiaAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
@@ -44,31 +52,56 @@ public class ManterDiaAtracao implements InterfaceManterDiaAtracao{
             throw new ExcecaoNegocio("Obrigatório informar a data da atração");
         }
         
-        boolean result = diaADAO.atualizar(diaAtracao);
+        boolean result = false;
+        try {
+            result = diaADAO.atualizar(diaAtracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiaAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public boolean excluir(DiaAtracao diaAtracao) throws ExcecaoPersistencia, ExcecaoNegocio {
-        boolean result = diaADAO.deletar(diaAtracao);
+        boolean result = false;
+        try {
+            result = diaADAO.deletar(diaAtracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiaAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public DiaAtracao pesquisarPorId(Long seqDiaAtracao) throws ExcecaoPersistencia {
-        DiaAtracao result = diaADAO.consultarPorId(seqDiaAtracao);
+        DiaAtracao result = null;
+        try {
+            result = diaADAO.consultarPorId(seqDiaAtracao);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiaAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<DiaAtracao> pesquisarPorSeqDia(Long seqDia) throws ExcecaoPersistencia {
-        List<DiaAtracao> result = diaADAO.listarPorSeqDia(seqDia);
+        List<DiaAtracao> result = null;
+        try {
+            result = diaADAO.listarPorSeqDia(seqDia);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiaAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<DiaAtracao> pesquisarTodos() throws ExcecaoPersistencia {
-        List<DiaAtracao> result = diaADAO.listarTudo();
+        List<DiaAtracao> result = null;
+        try {
+            result = diaADAO.listarTudo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiaAtracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
     

@@ -1,6 +1,9 @@
 package model.service.implementacao;
 
+import java.rmi.RemoteException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.implementacao.CidadeDAO;
 import model.dao.interfaces.InterfaceCidadeDAO;
 import model.domainAntigo.Cidade;
@@ -26,7 +29,12 @@ public class ManterCidade implements InterfaceManterCidade {
             throw new ExcecaoNegocio("Obrigatório informar o nome da cidade");
         }
         
-        Long result = cidadeDAO.inserir(cidade);
+        Long result = null;
+        try {
+            result = cidadeDAO.inserir(cidade);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
@@ -42,31 +50,56 @@ public class ManterCidade implements InterfaceManterCidade {
             throw new ExcecaoNegocio("Obrigatório informar o nome da cidade");
         }
         
-        boolean result = cidadeDAO.atualizar(cidade);
+        boolean result = false;
+        try {
+            result = cidadeDAO.atualizar(cidade);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public boolean excluir(Cidade cidade) throws ExcecaoPersistencia, ExcecaoNegocio {
-        boolean result = cidadeDAO.deletar(cidade);
+        boolean result = false;
+        try {
+            result = cidadeDAO.deletar(cidade);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public Cidade pesquisarPorId(Long codCidade) throws ExcecaoPersistencia {
-        Cidade result = cidadeDAO.consultarPorId(codCidade);
+        Cidade result = null;
+        try {
+            result = cidadeDAO.consultarPorId(codCidade);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Cidade> pesquisarPorCodEstado(Long codEstado) throws ExcecaoPersistencia {
-        List<Cidade> result = cidadeDAO.listarPorCodEstado(codEstado);
+        List<Cidade> result = null;
+        try {
+            result = cidadeDAO.listarPorCodEstado(codEstado);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Cidade> pesquisarTodos() throws ExcecaoPersistencia {
-        List<Cidade> result = cidadeDAO.listarTudo();
+        List<Cidade> result = null;
+        try {
+            result = cidadeDAO.listarTudo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 

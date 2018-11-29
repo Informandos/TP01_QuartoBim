@@ -1,8 +1,11 @@
 package model.service.implementacao;
 
+import java.rmi.RemoteException;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.implementacao.ComentarioDAO;
 import model.dao.interfaces.InterfaceComentarioDAO;
 import model.domainAntigo.Comentario;
@@ -34,7 +37,12 @@ public class ManterComentario implements InterfaceManterComentario{
             throw new ExcecaoNegocio("Obrigatório informar o comentário");
         }
         
-        Long result = comentarioDAO.inserir(comentario);
+        Long result = null;
+        try {
+            result = comentarioDAO.inserir(comentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
@@ -56,31 +64,56 @@ public class ManterComentario implements InterfaceManterComentario{
             throw new ExcecaoNegocio("Obrigatório informar o comentário");
         }
         
-        boolean result = comentarioDAO.atualizar(comentario);
+        boolean result = false;
+        try {
+            result = comentarioDAO.atualizar(comentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public boolean excluir(Comentario comentario) throws ExcecaoPersistencia, ExcecaoNegocio {
-        boolean result = comentarioDAO.deletar(comentario);
+        boolean result = false;
+        try {
+            result = comentarioDAO.deletar(comentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public Comentario pesquisarPorId(Long seqComentario) throws ExcecaoPersistencia {
-        Comentario result = comentarioDAO.consultarPorId(seqComentario);
+        Comentario result = null;
+        try {
+            result = comentarioDAO.consultarPorId(seqComentario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Comentario> pesquisarPorCodDiario(Long codDiario) throws ExcecaoPersistencia {
-        List<Comentario> result = comentarioDAO.listarPorCodDiario(codDiario);
+        List<Comentario> result = null;
+        try {
+            result = comentarioDAO.listarPorCodDiario(codDiario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Comentario> pesquisarTodos() throws ExcecaoPersistencia {
-        List<Comentario> result = comentarioDAO.listarTudo();
+        List<Comentario> result = null;
+        try {
+            result = comentarioDAO.listarTudo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterComentario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
     

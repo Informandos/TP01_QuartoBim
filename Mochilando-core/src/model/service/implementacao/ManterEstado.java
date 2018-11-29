@@ -5,7 +5,10 @@
  */
 package model.service.implementacao;
 
+import java.rmi.RemoteException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.implementacao.EstadoDAO;
 import model.dao.interfaces.InterfaceEstadoDAO;
 import model.domainJPA.Estado;
@@ -33,7 +36,12 @@ public class ManterEstado implements InterfaceManterEstado {
         if((estado.getSigla() == null) || (estado.getSigla().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar a sigla.");
                   
-        Long result = estadoDAO.inserir(estado);
+        Long result = null;
+        try {
+            result = estadoDAO.inserir(estado);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
@@ -45,31 +53,56 @@ public class ManterEstado implements InterfaceManterEstado {
         if((estado.getSigla() == null) || (estado.getSigla().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar a sigla.");
                   
-        boolean result = estadoDAO.atualizar(estado);
+        boolean result = false;
+        try {
+            result = estadoDAO.atualizar(estado);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public boolean excluir(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio {
-        boolean result = estadoDAO.deletar(estado);
+        boolean result = false;
+        try {
+            result = estadoDAO.deletar(estado);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;   
     }
 
     @Override
     public Estado pesquisarPorId(Long codEstado) throws ExcecaoPersistencia {
-        Estado result = estadoDAO.consultarPorId(codEstado);
+        Estado result = null;
+        try {
+            result = estadoDAO.consultarPorId(codEstado);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public Estado pesquisarPorSigla(String sigla) throws ExcecaoPersistencia {
-       Estado result = estadoDAO.consultarPorSigla(sigla);
+       Estado result = null;
+        try {
+            result = estadoDAO.consultarPorSigla(sigla);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
+        }
        return result; 
     }
 
     @Override
     public List<Estado> pesquisarTodos() throws ExcecaoPersistencia {
-        List<Estado> result = estadoDAO.listarTudo();
+        List<Estado> result = null;
+        try {
+            result = estadoDAO.listarTudo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
     

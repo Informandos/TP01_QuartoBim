@@ -5,7 +5,10 @@
  */
 package model.serviceJPAImpl;
 
+import java.rmi.RemoteException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.dao.implementacao.DiarioDAO;
@@ -157,7 +160,12 @@ public class ManterDiario implements InterfaceManterDiario {
 
     @Override
     public List<Diario> pesquisarDiario(String textoBusca) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
-        List<Diario> result = diarioDAO.buscarDiario(textoBusca);
+        List<Diario> result = null;
+        try {
+            result = diarioDAO.buscarDiario(textoBusca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
     
