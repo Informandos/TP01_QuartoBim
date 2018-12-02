@@ -1,9 +1,9 @@
-package model.daoJPAImpl;
+package model.daoJPA.implementacao;
 
 import connection.ConnectionFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.daoJPA.InterfaceFotoDAO;
+import model.daoJPA.interfaces.InterfaceFotoDAO;
 import model.domainAntigo.Foto;
 
 /**
