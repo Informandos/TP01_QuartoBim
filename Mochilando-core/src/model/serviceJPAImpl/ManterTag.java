@@ -5,8 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.dao.interfaces.InterfaceTagDAO;
-import model.domainAntigo.Tag;
+import model.daoJPA.interfaces.InterfaceTagDAO;
+import model.domainJPA.Tag;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
@@ -23,7 +23,7 @@ public class ManterTag implements InterfaceTagDAO{
     }
     
     @Override
-    public Long inserir(Tag tag) throws ExcecaoPersistencia {
+    public Long inserir(Tag tag) {
         if((tag.getCodTag() == null))
             try {
                 throw new ExcecaoNegocio("Obrigatório informar o cod teg.");
@@ -41,7 +41,7 @@ public class ManterTag implements InterfaceTagDAO{
     }
 
     @Override
-    public boolean atualizar(Tag tag) throws ExcecaoPersistencia {
+    public boolean atualizar(Tag tag) {
         if((tag.getCodTag() == null))
             try {
                 throw new ExcecaoNegocio("Obrigatório informar o cod teg.");
@@ -66,7 +66,7 @@ public class ManterTag implements InterfaceTagDAO{
     }
 
     @Override
-    public boolean deletar(Tag tag) throws ExcecaoPersistencia {
+    public boolean deletar(Tag tag) {
         if(tag != null){
             em.remove(tag);
         }
@@ -74,19 +74,19 @@ public class ManterTag implements InterfaceTagDAO{
     }
 
     @Override
-    public Tag consultarPorId(Long codTag) throws ExcecaoPersistencia {
+    public Tag consultarPorId(Long codTag) {
         return em.find(Tag.class, codTag);
     }
 
     @Override
-    public Tag consultarPorNome(String descTag) throws ExcecaoPersistencia {
+    public Tag consultarPorNome(String descTag) {
         Query query = em.createQuery("SELECT * FROM tag WHERE desc_tag = "+descTag);
         Tag result = (Tag) query.getSingleResult();
         return result;
     }
 
     @Override
-    public List<Tag> listarTudo() throws ExcecaoPersistencia {
+    public List<Tag> listarTudo() {
         Query query = em.createQuery("SELECT * FROM tag ORDER BY cod_tag");
         List<Tag> result = query.getResultList();
         return result;

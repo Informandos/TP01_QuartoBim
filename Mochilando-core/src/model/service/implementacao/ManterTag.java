@@ -6,9 +6,9 @@
 package model.service.implementacao;
 
 import java.util.List;
-import model.dao.implementacao.TagDAO;
-import model.dao.interfaces.InterfaceTagDAO;
-import model.domainAntigo.Tag;
+import model.daoJPA.implementacao.TagDAO;
+import model.daoJPA.interfaces.InterfaceTagDAO;
+import model.domainJPA.Tag;
 import model.service.interfaces.InterfaceManterTag;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

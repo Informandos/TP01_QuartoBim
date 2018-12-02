@@ -4,7 +4,7 @@ package model.service.interfaces;
 
 import util.service.ExcecaoNegocio;
 import java.util.List;
-import model.domainAntigo.Usuario;
+import model.domainJPA.Usuario;
 import util.db.exception.*;
 
 /**

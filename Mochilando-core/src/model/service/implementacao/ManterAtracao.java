@@ -12,7 +12,7 @@ import model.domainAntigo.Atracao;
 import model.service.interfaces.InterfaceManterAtracao;
 
 
-public class ManterAtracao implements InterfaceManterAtracao{
+public class ManterAtracao implements InterfaceManterAtracao {
 
     private final InterfaceAtracaoDAO atracaoDAO;
 

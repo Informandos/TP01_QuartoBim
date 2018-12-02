@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.service.implementacao;
 
 import java.util.List;
-import model.dao.implementacao.FotoDAO;
-import model.dao.interfaces.InterfaceFotoDAO;
-import model.domainAntigo.Foto;
+import model.daoJPA.implementacao.FotoDAO;
+import model.daoJPA.interfaces.InterfaceFotoDAO;
+import model.domainJPA.Foto;
 import model.service.interfaces.InterfaceManterFoto;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
@@ -30,7 +25,7 @@ private InterfaceFotoDAO fotoDAO;
         if( (foto.getSeqFoto()== null) )
             throw new   ExcecaoNegocio("Obrigatório informar o codigo da foto");
         
-        if( foto.getByteFoto()==null)
+        if( foto.getFoto()==null)
             throw new ExcecaoNegocio("Obrigatório informar a foto");
          Long result = fotoDAO.inserir(foto);
         return result;
@@ -44,7 +39,7 @@ private InterfaceFotoDAO fotoDAO;
         if( (foto.getSeqFoto()== null) )
             throw new   ExcecaoNegocio("Obrigatório informar o codigo da foto");
         
-        if( foto.getByteFoto()==null)
+        if( foto.getFoto()==null)
             throw new ExcecaoNegocio("Obrigatório informar a foto");
         boolean result = fotoDAO.atualizar(foto);
         return result;

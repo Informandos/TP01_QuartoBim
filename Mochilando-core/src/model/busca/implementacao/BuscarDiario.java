@@ -8,7 +8,7 @@ import java.util.List;
 import model.dao.implementacao.UsuarioDAO;
 import model.dao.interfaces.InterfaceUsuarioDAO;
 import model.domainAntigo.Diario;
-import model.domainAntigo.Usuario;
+import model.domainJPA.Usuario;
 import util.db.ConnectionManager;
 import util.db.exception.ExcecaoPersistencia;
 

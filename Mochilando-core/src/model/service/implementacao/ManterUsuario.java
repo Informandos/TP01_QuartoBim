@@ -6,9 +6,9 @@
 package model.service.implementacao;
 
 import java.util.List;
-import model.dao.implementacao.UsuarioDAO;
-import model.dao.interfaces.InterfaceUsuarioDAO;
-import model.domainAntigo.Usuario;
+import model.daoJPA.implementacao.UsuarioDAO;
+import model.daoJPA.interfaces.InterfaceUsuarioDAO;
+import model.domainJPA.Usuario;
 import model.service.interfaces.InterfaceManterUsuario;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
@@ -28,7 +28,7 @@ public class ManterUsuario implements InterfaceManterUsuario {
     public Long cadastrar(Usuario usuario) throws  ExcecaoPersistencia,ExcecaoNegocio{
         
         
-         if((usuario.getNomUsuario()== null) || (usuario.getNomUsuario().isEmpty()))
+         if((usuario.getNomeUsuario()== null) || (usuario.getNomeUsuario().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar o nome.");
         if((usuario.getTxtSenha()== null) || (usuario.getTxtSenha().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar a senha.");
@@ -50,7 +50,7 @@ public class ManterUsuario implements InterfaceManterUsuario {
         
           if((usuario.getCodUsuario()== null))
             throw new ExcecaoNegocio("Obrigatório informar o codigo usuario");
-         if((usuario.getNomUsuario()== null) || (usuario.getNomUsuario().isEmpty()))
+         if((usuario.getNomeUsuario()== null) || (usuario.getNomeUsuario().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar o nome.");
         if((usuario.getTxtSenha()== null) || (usuario.getTxtSenha().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar a senha.");
