@@ -1,0 +1,245 @@
+
+CREATE SEQUENCE public.tipo_atracao_cod_tipo_atracao_seq;
+
+CREATE TABLE public.tipo_atracao (
+                cod_tipo_atracao SMALLINT NOT NULL DEFAULT nextval('public.tipo_atracao_cod_tipo_atracao_seq'),
+                desc_tipo_atracao VARCHAR NOT NULL,
+                CONSTRAINT cod_tipo_atracao PRIMARY KEY (cod_tipo_atracao)
+);
+
+
+ALTER SEQUENCE public.tipo_atracao_cod_tipo_atracao_seq OWNED BY public.tipo_atracao.cod_tipo_atracao;
+
+CREATE SEQUENCE public.tag_cod_tag_seq;
+
+CREATE TABLE public.tag (
+                cod_tag SMALLINT NOT NULL DEFAULT nextval('public.tag_cod_tag_seq'),
+                desc_tag VARCHAR NOT NULL,
+                CONSTRAINT cod_tag PRIMARY KEY (cod_tag)
+);
+
+
+ALTER SEQUENCE public.tag_cod_tag_seq OWNED BY public.tag.cod_tag;
+
+CREATE SEQUENCE public.estado_cod_estado_seq;
+
+CREATE TABLE public.estado (
+                cod_estado SMALLINT NOT NULL DEFAULT nextval('public.estado_cod_estado_seq'),
+                sigla VARCHAR NOT NULL,
+                nom_estado VARCHAR NOT NULL,
+                CONSTRAINT cod_estado PRIMARY KEY (cod_estado)
+);
+
+
+ALTER SEQUENCE public.estado_cod_estado_seq OWNED BY public.estado.cod_estado;
+
+CREATE SEQUENCE public.cidade_cod_cidade_seq;
+
+CREATE TABLE public.cidade (
+                cod_cidade SMALLINT NOT NULL DEFAULT nextval('public.cidade_cod_cidade_seq'),
+                cod_estado SMALLINT NOT NULL,
+                nom_cidade VARCHAR NOT NULL,
+                CONSTRAINT cod_cidade PRIMARY KEY (cod_cidade)
+);
+
+
+ALTER SEQUENCE public.cidade_cod_cidade_seq OWNED BY public.cidade.cod_cidade;
+
+CREATE TABLE public.atracao (
+                seq_atracao SMALLINT NOT NULL,
+                cod_tipo_atracao SMALLINT NOT NULL,
+                cod_cidade SMALLINT NOT NULL,
+                nom_atracao VARCHAR NOT NULL,
+                nro_latitude DOUBLE PRECISION NOT NULL,
+                nro_longitude DOUBLE PRECISION NOT NULL,
+                CONSTRAINT seq_atracao PRIMARY KEY (seq_atracao)
+);
+
+
+CREATE SEQUENCE public.usuario_cod_usuario_seq;
+
+CREATE TABLE public.usuario (
+                cod_usuario VARCHAR NOT NULL DEFAULT nextval('public.usuario_cod_usuario_seq'),
+                cod_cidade SMALLINT NOT NULL,
+                nom_usuario VARCHAR NOT NULL,
+                sobrenome_usuario VARCHAR NOT NULL,
+                txt_email VARCHAR NOT NULL,
+                txt_senha VARCHAR NOT NULL,
+                img_perfil BYTEA NOT NULL,
+                sexo VARCHAR NOT NULL,
+                dat_nascimento DATE NOT NULL,
+                CONSTRAINT cod_usuario PRIMARY KEY (cod_usuario)
+);
+
+
+ALTER SEQUENCE public.usuario_cod_usuario_seq OWNED BY public.usuario.cod_usuario;
+
+CREATE SEQUENCE public.usuario_tag_cod_usuario_tag_seq;
+
+CREATE TABLE public.usuario_tag (
+                cod_usuario_tag SMALLINT NOT NULL DEFAULT nextval('public.usuario_tag_cod_usuario_tag_seq'),
+                cod_usuario VARCHAR NOT NULL,
+                cod_tag SMALLINT NOT NULL,
+                CONSTRAINT cod_usuario_tag PRIMARY KEY (cod_usuario_tag)
+);
+
+
+ALTER SEQUENCE public.usuario_tag_cod_usuario_tag_seq OWNED BY public.usuario_tag.cod_usuario_tag;
+
+CREATE SEQUENCE public.diario_cod_diario_seq;
+
+CREATE TABLE public.diario (
+                cod_diario SMALLINT NOT NULL DEFAULT nextval('public.diario_cod_diario_seq'),
+                cod_usuario VARCHAR NOT NULL,
+                nom_diario VARCHAR NOT NULL,
+                dat_publicacao DATE NOT NULL,
+                dat_inicio_viagem DATE NOT NULL,
+                dat_fim_viagem VARCHAR NOT NULL,
+                txt_diario VARCHAR NOT NULL,
+                tipo_diario VARCHAR NOT NULL,
+                CONSTRAINT cod_diario PRIMARY KEY (cod_diario)
+);
+
+
+ALTER SEQUENCE public.diario_cod_diario_seq OWNED BY public.diario.cod_diario;
+
+CREATE SEQUENCE public.dia_seq_dia_seq;
+
+CREATE TABLE public.dia (
+                seq_dia SMALLINT NOT NULL DEFAULT nextval('public.dia_seq_dia_seq'),
+                cod_diario SMALLINT NOT NULL,
+                txt_dia VARCHAR NOT NULL,
+                ordem_dia INTEGER NOT NULL,
+                data_dia DATE NOT NULL,
+                CONSTRAINT seq_dia PRIMARY KEY (seq_dia)
+);
+
+
+ALTER SEQUENCE public.dia_seq_dia_seq OWNED BY public.dia.seq_dia;
+
+CREATE SEQUENCE public.dia_atracao_cod_tipo_atracao_seq;
+
+CREATE TABLE public.dia_atracao (
+                cod_tipo_atracao SMALLINT NOT NULL DEFAULT nextval('public.dia_atracao_cod_tipo_atracao_seq'),
+                seq_dia SMALLINT NOT NULL,
+                seq_atracao SMALLINT NOT NULL,
+                CONSTRAINT seq_dia_atracao PRIMARY KEY (cod_tipo_atracao)
+);
+
+
+ALTER SEQUENCE public.dia_atracao_cod_tipo_atracao_seq OWNED BY public.dia_atracao.cod_tipo_atracao;
+
+CREATE SEQUENCE public.tag_diario_cod_usuario_tag_seq;
+
+CREATE TABLE public.tag_diario (
+                cod_usuario_tag SMALLINT NOT NULL DEFAULT nextval('public.tag_diario_cod_usuario_tag_seq'),
+                cod_diario SMALLINT NOT NULL,
+                cod_tag SMALLINT NOT NULL,
+                CONSTRAINT cod_tag_diario PRIMARY KEY (cod_usuario_tag)
+);
+
+
+ALTER SEQUENCE public.tag_diario_cod_usuario_tag_seq OWNED BY public.tag_diario.cod_usuario_tag;
+
+CREATE SEQUENCE public.foto_seq_foto_seq;
+
+CREATE TABLE public.foto (
+                seq_foto SMALLINT NOT NULL DEFAULT nextval('public.foto_seq_foto_seq'),
+                cod_diario SMALLINT NOT NULL,
+                foto BYTEA,
+                CONSTRAINT seq_foto PRIMARY KEY (seq_foto)
+);
+
+
+ALTER SEQUENCE public.foto_seq_foto_seq OWNED BY public.foto.seq_foto;
+
+ALTER TABLE public.atracao ADD CONSTRAINT tipo_atracao_atracao_fk
+FOREIGN KEY (cod_tipo_atracao)
+REFERENCES public.tipo_atracao (cod_tipo_atracao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.usuario_tag ADD CONSTRAINT tag_usuario_tag_fk
+FOREIGN KEY (cod_tag)
+REFERENCES public.tag (cod_tag)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.tag_diario ADD CONSTRAINT tag_tag_diario_fk
+FOREIGN KEY (cod_tag)
+REFERENCES public.tag (cod_tag)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.cidade ADD CONSTRAINT estado_cidade_fk
+FOREIGN KEY (cod_estado)
+REFERENCES public.estado (cod_estado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.usuario ADD CONSTRAINT cidade_usuario_fk
+FOREIGN KEY (cod_cidade)
+REFERENCES public.cidade (cod_cidade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.atracao ADD CONSTRAINT cidade_atracao_fk
+FOREIGN KEY (cod_cidade)
+REFERENCES public.cidade (cod_cidade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.dia_atracao ADD CONSTRAINT atracao_dia_atracao_fk
+FOREIGN KEY (seq_atracao)
+REFERENCES public.atracao (seq_atracao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.diario ADD CONSTRAINT usuario_diario_fk
+FOREIGN KEY (cod_usuario)
+REFERENCES public.usuario (cod_usuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.usuario_tag ADD CONSTRAINT usuario_usuario_tag_fk
+FOREIGN KEY (cod_usuario)
+REFERENCES public.usuario (cod_usuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.foto ADD CONSTRAINT diario_foto_fk
+FOREIGN KEY (cod_diario)
+REFERENCES public.diario (cod_diario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.tag_diario ADD CONSTRAINT diario_tag_diario_fk
+FOREIGN KEY (cod_diario)
+REFERENCES public.diario (cod_diario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.dia ADD CONSTRAINT diario_dia_fk
+FOREIGN KEY (cod_diario)
+REFERENCES public.diario (cod_diario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.dia_atracao ADD CONSTRAINT dia_dia_atracao_fk
+FOREIGN KEY (seq_dia)
+REFERENCES public.dia (seq_dia)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
