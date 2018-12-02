@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.daoJPAImpl;
+package model.daoJPA.implementacao;
 
 import connection.ConnectionFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.daoJPA.InterfaceEstadoDAO;
+import model.daoJPA.interfaces.InterfaceEstadoDAO;
 import model.domainJPA.Estado;
 
 /**
