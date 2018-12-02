@@ -1,4 +1,4 @@
-package model.daoJPA.implementacao;
+package model.daoJPA.impl;
 
 import java.util.List;
 import javax.persistence.EntityManager;

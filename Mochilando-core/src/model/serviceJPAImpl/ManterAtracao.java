@@ -1,29 +1,26 @@
-package model.service.implementacao;
+package model.serviceJPAImpl;
 
-import java.rmi.RemoteException;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.daoJPA.impl.AtracaoDAO;
 import model.daoJPA.interfaces.InterfaceAtracaoDAO;
+import model.daoJPA.impl.AtracaoDAO;
 import model.domainJPA.Atracao;
+
 import model.service.interfaces.InterfaceManterAtracao;
 import util.db.exception.ExcecaoConexaoCliente;
 
-
-public class ManterAtracao implements InterfaceManterAtracao{
+public class ManterAtracao implements InterfaceManterAtracao {
 
     private final InterfaceAtracaoDAO atracaoDAO;
 
     public ManterAtracao() {
         atracaoDAO = new AtracaoDAO();
     }
-    
+
     @Override
     public Long cadastrar(Atracao atracao) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
-        if(atracao.getSeqAtracao() == null){
+        if (atracao.getSeqAtracao() == null) {
             throw new ExcecaoNegocio("Obrigatório informar o código da atração");
         }
         if (atracao.getCidade().getCodCidade() == null) {
@@ -42,15 +39,15 @@ public class ManterAtracao implements InterfaceManterAtracao{
         if (atracao.getNroLongitude() == null) {
             throw new ExcecaoNegocio("Obrigatório informar a longitude da atracao");
         }
-        
+
         Long result = null;
         result = atracaoDAO.inserir(atracao);
         return result;
     }
 
     @Override
-    public boolean alterar(Atracao atracao) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
-        if(atracao.getSeqAtracao() == null){
+    public boolean alterar(Atracao atracao) throws ExcecaoPersistencia, ExcecaoNegocio {
+        if (atracao.getSeqAtracao() == null) {
             throw new ExcecaoNegocio("Obrigatório informar o código da atração");
         }
         if (atracao.getCidade().getCodCidade() == null) {
@@ -68,16 +65,19 @@ public class ManterAtracao implements InterfaceManterAtracao{
         if (atracao.getNroLongitude() == null) {
             throw new ExcecaoNegocio("Obrigatório informar a longitude da atracao");
         }
-        
+
         boolean result = false;
         result = atracaoDAO.atualizar(atracao);
+
         return result;
     }
 
     @Override
     public boolean excluir(Atracao atracao) throws ExcecaoPersistencia, ExcecaoNegocio {
         boolean result = false;
-        result = atracaoDAO.deletar(atracao);
+        if(atracao != null)
+            result = atracaoDAO.deletar(atracao);
+        
         return result;
     }
 
@@ -115,5 +115,5 @@ public class ManterAtracao implements InterfaceManterAtracao{
         result = atracaoDAO.listarPorCodCidade(codCidade);
         return result;
     }
-    
+
 }

@@ -15,9 +15,11 @@ import javax.persistence.Persistence;
  */
 public class ConnectionFactory {
     
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("MochilaPU");
+    private static final String NOMEPU = "Mochilando-corePU";
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(NOMEPU);
     private static EntityManager em;
 
+   
     
     public EntityManager getConnection(){
         this.em = emf.createEntityManager();

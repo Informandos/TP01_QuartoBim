@@ -8,7 +8,7 @@ package model.service.interfaces;
 
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
-import model.domainAntigo.Atracao;
+import model.domainJPA.Atracao;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.service.ExcecaoNegocio;
 

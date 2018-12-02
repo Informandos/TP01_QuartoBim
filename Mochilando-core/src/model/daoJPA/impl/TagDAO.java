@@ -1,23 +1,24 @@
-package model.daoJPA.implementacao;
+package model.daoJPA.impl;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.domainJPA.TipoAtracao;
-import model.daoJPA.interfaces.InterfaceTipoAtracaoDAO;
+import model.daoJPA.interfaces.InterfaceTagDAO;
+import model.domainJPA.Tag;
+import util.db.exception.ExcecaoPersistencia;
 
 /**
  *
  * @author lucca
  */
-public class TipoAtracaoDAO implements InterfaceTipoAtracaoDAO{
-
+public class TagDAO implements InterfaceTagDAO{
+    
     @Override
-    public Long inserir(TipoAtracao tipoAtracao) {
+    public Long inserir(Tag tag) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.persist(tipoAtracao);
+            em.persist(tag);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -25,16 +26,16 @@ public class TipoAtracaoDAO implements InterfaceTipoAtracaoDAO{
             em.close();
         }
 
-        return tipoAtracao.getCodTipoAtracao();
+        return tag.getCodTag();
     }
 
     @Override
-    public boolean atualizar(TipoAtracao tipoAtracao) {
+    public boolean atualizar(Tag tag) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.merge(tipoAtracao);
+            em.merge(tag);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -46,33 +47,33 @@ public class TipoAtracaoDAO implements InterfaceTipoAtracaoDAO{
     }
 
     @Override
-    public boolean deletar(TipoAtracao tipoAtracao) {
-        return true;
+    public boolean deletar(Tag tag) {
+      return true;  
     }
 
     @Override
-    public TipoAtracao consultarPorId(Long codTipoAtracao) {
+    public Tag consultarPorId(Long codTag) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
 
-        TipoAtracao tipoAtracao = null;
+        Tag tag = null;
 
         try {
-            tipoAtracao = em.find(TipoAtracao.class, codTipoAtracao);
+            tag = em.find(Tag.class, codTag);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             em.close();
         }
-        return tipoAtracao;
+        return tag;
     }
 
     @Override
-    public TipoAtracao consultarPorNome(String descTipoAtracao) {
+    public Tag consultarPorNome(String descTag) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
-        TipoAtracao tipoAtrcao = null;
+        Tag tag = null;
         try {
             em.getTransaction().begin();
-            tipoAtrcao = (TipoAtracao) em.createQuery("SELECT * from public.tag where desc_tipo_atracao = " + descTipoAtracao).getSingleResult();
+            tag = (Tag) em.createQuery("SELECT * from public.tag where desc_tag = " + descTag).getSingleResult();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -81,16 +82,16 @@ public class TipoAtracaoDAO implements InterfaceTipoAtracaoDAO{
             em.close();
         }
 
-        return tipoAtrcao;
+        return tag;
     }
 
     @Override
-    public List<TipoAtracao> listarTudo() {
+    public List<Tag> listarTudo() {
         EntityManager em = new connection.ConnectionFactory().getConnection();
-        List<TipoAtracao> tiposAtracao = null;
+        List<Tag> tags = null;
         try {
             em.getTransaction().begin();
-            tiposAtracao = em.createQuery("SELECT * from public.tag").getResultList();
+            tags = em.createQuery("SELECT * from public.tag").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -99,7 +100,7 @@ public class TipoAtracaoDAO implements InterfaceTipoAtracaoDAO{
             em.close();
         }
 
-        return tiposAtracao;
+        return tags;
     }
     
 }

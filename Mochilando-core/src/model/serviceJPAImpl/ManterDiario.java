@@ -26,10 +26,10 @@ import util.db.exception.ExcecaoPersistencia;
 public class ManterDiario implements InterfaceManterDiario {
     
     private InterfaceDiarioDAO diarioDAO;
-    protected EntityManager em;
+    
     
     public ManterDiario(EntityManager em){
-        this.em = em;
+        this.diarioDAO = new DiarioDAO();
     }
 
     @Override
@@ -55,7 +55,11 @@ public class ManterDiario implements InterfaceManterDiario {
         if(diario.getTipoDiario() == null || diario.getTipoDiario().isEmpty()){
             throw new ExcecaoNegocio("Obrigatório informar tipo do diario");
         }
-        em.persist(diario);
+        try {
+            diarioDAO.inserir(diario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return diario.getCodDiario();
     }
 
@@ -79,7 +83,11 @@ public class ManterDiario implements InterfaceManterDiario {
         if(diario.getTxtDiario() == null || diario.getTxtDiario().isEmpty()){
             throw new ExcecaoNegocio("Obrigatório informar texto do diario");
         }
-        em.merge(diario);
+        try {
+            diarioDAO.atualizar(diario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return true;
     }
 
@@ -87,73 +95,84 @@ public class ManterDiario implements InterfaceManterDiario {
     public boolean excluir(Diario diario) throws ExcecaoPersistencia, ExcecaoNegocio {
         
         if(diario != null){
-            em.remove(diario);
+            try {
+                diarioDAO.deletar(diario);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return true; 
     }
 
     @Override
     public Diario pesquisarPorId(Long codDiario) throws ExcecaoPersistencia {
-        
-        return em.find(Diario.class, codDiario);
+        Diario diario = null;
+        try {
+            diario = diarioDAO.consultarPorId(codDiario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return diario;
     }
 
     @Override
     public List<Diario> pesquisarTodos() throws ExcecaoPersistencia {
-        Query query = em.createQuery("SELECT * FROM diario ORDER BY nom_diario");
-        List<Diario> result = query.getResultList();
+        List<Diario> result = null;
+        try {
+            result = diarioDAO.listarTudo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Diario> pesquisarPorCodUsuario(Long codUsuario) throws ExcecaoPersistencia {
-        Query query = em.createQuery("SELECT * FROM diario WHERE cod_usuario = "+ codUsuario +"ORDER BY nom_diario");
-        List<Diario> result = query.getResultList();
+        List<Diario> result = null;
+        try {
+            result = diarioDAO.listarPorCodUsuario(codUsuario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
     @Override
     public List<Diario> pesquisarPorCodCidade(Long codCidade) throws ExcecaoPersistencia {
-        String sql = "SELECT A.* FROM diario A "
-                    + "JOIN dia B ON A.cod_diario = B.cod_diario "
-                    + "JOIN dia_atracao C ON B.seq_dia = C.seq_dia "
-                    + "JOIN atracao D ON C.seq_atracao = D.seq_atracao "
-                    + "JOIN cidade E ON D.cod_cidade_atracao = E.cod_cidade "
-                    + "WHERE E.cod_cidade = "+codCidade +" "
-                    + "GROUP BY 1 "
-                    + "ORDER BY A.nom_diario;";
-        Query query = em.createQuery(sql);
-        List<Diario> result = query.getResultList();
+        
+        List<Diario> result = null;
+        try {
+            result = diarioDAO.listarPorCodCidade(codCidade);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         return result;
     }
 
     @Override
     public List<Diario> pesquisarPorCodEstado(Long codEstado) throws ExcecaoPersistencia {
-        String sql = "SELECT A.* FROM diario A "
-                    + "JOIN dia B ON A.cod_diario = B.cod_diario "
-                    + "JOIN dia_atracao C ON B.seq_dia = C.seq_dia "
-                    + "JOIN atracao D ON C.seq_atracao = D.seq_atracao "
-                    + "JOIN cidade E ON D.cod_cidade_atracao = E.cod_cidade "
-                    + "JOIN estado F ON E.cod_estado = F.cod_estado "
-                    + "WHERE E.cod_estado = "+ codEstado +" "
-                    + "GROUP BY 1;";
-        Query query = em.createQuery(sql);
-        List<Diario> result = query.getResultList();
+        List<Diario> result = null;
+        try {
+            result = diarioDAO.listarPorCodEstado(codEstado);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         return result;
     }
 
     @Override
     public List<Diario> atualizarPagInicial(Long codUsuario) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
-        String sql = "SELECT A.cod_diario FROM"
-                    + " diario A JOIN tag_diario B ON A.cod_diario = B.cod_diario "
-                    + "JOIN usuario_tag C ON B.cod_tag = C.cod_tag "
-                    + "WHERE C.cod_usuario = ? "
-                    + "GROUP BY 1, A.dat_publicacao ORDER BY A.dat_publicacao";
+        List<Diario> result = null;
         
-        Query query = em.createQuery(sql);
-        List<Diario> result = query.getResultList();
+        try {
+            result = diarioDAO.atualizarPaginaInicial(codUsuario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManterDiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return result;
     }

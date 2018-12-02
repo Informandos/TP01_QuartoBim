@@ -1,24 +1,30 @@
-package model.daoJPA.implementacao;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.daoJPA.impl;
 
 import connection.ConnectionFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.daoJPA.interfaces.InterfaceFotoDAO;
-import model.domainAntigo.Foto;
+import model.daoJPA.interfaces.InterfaceEstadoDAO;
+import model.domainJPA.Estado;
 
 /**
  *
- * @author lucca
+ *
+ * @author Juliana
  */
-public class FotoDAO implements InterfaceFotoDAO{
+public class EstadoDAO implements InterfaceEstadoDAO {
 
     @Override
-    public Long inserir(Foto foto) {
+    public Long inserir(Estado estado) {
         EntityManager em = new ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.persist(foto);
+            em.persist(estado);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -26,16 +32,16 @@ public class FotoDAO implements InterfaceFotoDAO{
             em.close();
         }
 
-        return foto.getSeqFoto();
+        return estado.getCodEstado();
     }
 
     @Override
-    public boolean atualizar(Foto foto) {
+    public boolean atualizar(Estado estado) {
         EntityManager em = new ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.merge(foto);
+            em.merge(estado);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -47,33 +53,43 @@ public class FotoDAO implements InterfaceFotoDAO{
     }
 
     @Override
-    public boolean deletar(Foto foto) {
+    public boolean deletar(Estado estado) {
+        EntityManager em = new ConnectionFactory().getConnection();
+        try {
+            em.getTransaction().begin();
+            em.remove(estado);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
         return true;
     }
 
     @Override
-    public Foto consultarPorId(Long seqFoto) {
+    public Estado consultarPorId(Long codEstado) {
         EntityManager em = new ConnectionFactory().getConnection();
 
-        Foto foto = null;
+        Estado estado = null;
 
         try {
-            foto = em.find(Foto.class, seqFoto);
+            estado = em.find(Estado.class, codEstado);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             em.close();
         }
-        return foto;
+        return estado;
     }
 
     @Override
-    public List<Foto> listarTudo() {
+    public Estado consultarPorSigla(String sigla) {
         EntityManager em = new ConnectionFactory().getConnection();
-        List<Foto> fotos = null;
+        Estado estado = null;
         try {
             em.getTransaction().begin();
-            fotos = em.createQuery("SELECT * from public.foto").getResultList();
+            estado = (Estado) em.createQuery("from public.estado where sigla = "+ sigla).getSingleResult();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -82,16 +98,17 @@ public class FotoDAO implements InterfaceFotoDAO{
             em.close();
         }
 
-        return fotos;
+        return estado;
     }
 
     @Override
-    public List<Foto> listarPorDia(Long seqDia) {
+    public List<Estado> listarTudo() {
+        
         EntityManager em = new ConnectionFactory().getConnection();
-        List<Foto> fotos = null;
+        List<Estado> estados = null;
         try {
             em.getTransaction().begin();
-            fotos = em.createQuery("SELECT * from public.foto order by seq_dia").getResultList();
+            estados = em.createQuery("from estado").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -100,7 +117,7 @@ public class FotoDAO implements InterfaceFotoDAO{
             em.close();
         }
 
-        return fotos;
+        return estados;
     }
-    
+
 }

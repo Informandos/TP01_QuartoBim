@@ -3,9 +3,8 @@ package model.serviceJPAImpl;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import model.dao.interfaces.InterfaceEstadoDAO;
+import model.daoJPA.impl.EstadoDAO;
+import model.daoJPA.interfaces.InterfaceEstadoDAO;
 import model.domainJPA.Estado;
 import model.service.interfaces.InterfaceManterEstado;
 import util.db.exception.ExcecaoConexaoCliente;
@@ -18,10 +17,10 @@ import util.db.exception.ExcecaoPersistencia;
  */
 public class ManterEstado implements InterfaceManterEstado{
     
-    protected EntityManager em;
+    private final InterfaceEstadoDAO estadoDAO;
 
-    public ManterEstado(EntityManager em) {
-        this.em = em;
+    public ManterEstado() {
+        estadoDAO = new EstadoDAO();
     }
 
     
@@ -41,7 +40,7 @@ public class ManterEstado implements InterfaceManterEstado{
             Logger.getLogger(ManterEstado.class.getName()).log(Level.SEVERE, null, ex);
         }
                   
-        em.persist(estado);
+        estadoDAO.inserir(estado);
         return estado.getCodEstado();
     }
 
@@ -53,32 +52,32 @@ public class ManterEstado implements InterfaceManterEstado{
         if((estado.getSigla() == null) || (estado.getSigla().isEmpty()))
             throw new ExcecaoNegocio("Obrigatório informar a sigla.");
         
-        em.merge(estado);
+        estadoDAO.atualizar(estado);
         return true;
     }
 
     @Override
     public boolean excluir(Estado estado) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
         if(estado != null){
-            em.remove(estado);
+            estadoDAO.deletar(estado);
         }
         return true;
     }
 
     @Override
     public Estado pesquisarPorId(Long codEstado) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
-        return em.find(Estado.class, codEstado);
+        return estadoDAO.consultarPorId(codEstado);
     }
 
     @Override
     public Estado pesquisarPorSigla(String sigla) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
-        return em.find(Estado.class, sigla);
+        return estadoDAO.consultarPorSigla(sigla);
     }
 
     @Override
     public List<Estado> pesquisarTodos() throws ExcecaoPersistencia, ExcecaoConexaoCliente {
-        Query query = em.createQuery("SELECT * FROM estado ORDER BY nom_estado");
-        List<Estado> result = query.getResultList();
+        
+        List<Estado> result = estadoDAO.listarTudo();
         return result;
     }
       

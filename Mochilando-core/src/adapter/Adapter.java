@@ -33,6 +33,7 @@ import model.domainAntigo.TipoAtracao;
 import model.domainAntigo.Usuario;
 import model.domainAntigo.UsuarioTag;
 import model.domainJPA.Estado;
+import model.domainJPA.Atracao;
 import model.service.implementacao.ManterAtracao;
 import model.service.implementacao.ManterAvaliacaoComentario;
 import model.service.implementacao.ManterAvaliacaoDiario;

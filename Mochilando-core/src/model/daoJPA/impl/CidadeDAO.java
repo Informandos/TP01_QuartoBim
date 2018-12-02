@@ -3,28 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.daoJPA.implementacao;
+package model.daoJPA.impl;
 
 import connection.ConnectionFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.daoJPA.interfaces.InterfaceEstadoDAO;
-import model.domainJPA.Estado;
+import model.daoJPA.interfaces.InterfaceCidadeDAO;
+import model.domainJPA.Cidade;
 
 /**
  *
- *
  * @author Juliana
  */
-public class EstadoDAO implements InterfaceEstadoDAO {
+public class CidadeDAO implements InterfaceCidadeDAO {
 
     @Override
-    public Long inserir(Estado estado) {
+    public Long inserir(Cidade cidade) {
         EntityManager em = new ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.persist(estado);
+            em.persist(cidade);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -32,16 +31,16 @@ public class EstadoDAO implements InterfaceEstadoDAO {
             em.close();
         }
 
-        return estado.getCodEstado();
+        return cidade.getCodCidade();
     }
 
     @Override
-    public boolean atualizar(Estado estado) {
+    public boolean atualizar(Cidade cidade) {
         EntityManager em = new ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.merge(estado);
+            em.merge(cidade);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -53,33 +52,46 @@ public class EstadoDAO implements InterfaceEstadoDAO {
     }
 
     @Override
-    public boolean deletar(Estado estado) {
+    public boolean deletar(Cidade cidade) {
+        EntityManager em = new ConnectionFactory().getConnection();
+
+        try {
+            em.getTransaction().begin();
+            em.remove(cidade);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+
         return true;
     }
 
     @Override
-    public Estado consultarPorId(Long codEstado) {
-        EntityManager em = new ConnectionFactory().getConnection();
+    public Cidade consultarPorId(Long codCidade) {
+       EntityManager em = new ConnectionFactory().getConnection();
 
-        Estado estado = null;
-
+       Cidade cidade = null;
+       
         try {
-            estado = em.find(Estado.class, codEstado);
+            cidade = em.find(Cidade.class, codCidade);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             em.close();
         }
-        return estado;
+
+        return cidade;
     }
 
     @Override
-    public Estado consultarPorSigla(String sigla) {
+    public List<Cidade> listarPorCodEstado(Long codEstado) {
         EntityManager em = new ConnectionFactory().getConnection();
-        Estado estado = null;
+        List<Cidade> cidades = null;
         try {
             em.getTransaction().begin();
-            estado = (Estado) em.createQuery("SELECT * from public.estado where sigla = "+ sigla).getSingleResult();
+            cidades = em.createQuery("from public.cidade where cod_estado = "+ codEstado).getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -88,17 +100,16 @@ public class EstadoDAO implements InterfaceEstadoDAO {
             em.close();
         }
 
-        return estado;
+        return cidades;
     }
 
     @Override
-    public List<Estado> listarTudo() {
-        
-        EntityManager em = new ConnectionFactory().getConnection();
-        List<Estado> estados = null;
+    public List<Cidade> listarTudo() {
+       EntityManager em = new ConnectionFactory().getConnection();
+        List<Cidade> cidades = null;
         try {
             em.getTransaction().begin();
-            estados = em.createQuery("SELECT nom_estado, cod_estado from public.estado").getResultList();
+            cidades = em.createQuery("from public.cidade").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -107,7 +118,7 @@ public class EstadoDAO implements InterfaceEstadoDAO {
             em.close();
         }
 
-        return estados;
+        return cidades;
     }
-
+    
 }

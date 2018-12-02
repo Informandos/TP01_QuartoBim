@@ -1,23 +1,23 @@
-package model.daoJPA.implementacao;
+package model.daoJPA.impl;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.daoJPA.interfaces.InterfaceUsuarioDAO;
-import model.domainJPA.Usuario;
+import model.daoJPA.interfaces.InterfaceTagDiarioDAO;
+import model.domainJPA.TagDiario;
 
 /**
  *
  * @author lucca
  */
-public class UsuarioDAO implements InterfaceUsuarioDAO{
+public class TagDiarioDAO implements InterfaceTagDiarioDAO{
 
     @Override
-    public Long inserir(Usuario usuario) {
+    public Long inserir(TagDiario tagDiario) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.persist(usuario);
+            em.persist(tagDiario);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -25,16 +25,16 @@ public class UsuarioDAO implements InterfaceUsuarioDAO{
             em.close();
         }
 
-        return usuario.getCodUsuario();
+        return tagDiario.getCodDiarioTag();
     }
 
     @Override
-    public boolean atualizar(Usuario usuario) {
+    public boolean atualizar(TagDiario tagDiario) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
 
         try {
             em.getTransaction().begin();
-            em.merge(usuario);
+            em.merge(tagDiario);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -46,33 +46,33 @@ public class UsuarioDAO implements InterfaceUsuarioDAO{
     }
 
     @Override
-    public boolean deletar(Usuario usuario) {
+    public boolean deletar(TagDiario tagDiario) {
         return true;
     }
 
     @Override
-    public Usuario consultarPorId(Long codUsuario) {
+    public TagDiario consultarPorId(Long seqTagDiario) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
 
-        Usuario usuario = null;
+        TagDiario tagDiario = null;
 
         try {
-            usuario = em.find(Usuario.class, codUsuario);
+            tagDiario = em.find(TagDiario.class, seqTagDiario);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             em.close();
         }
-        return usuario;
+        return tagDiario;
     }
 
     @Override
-    public Usuario consultarPorEmail(String txtEmail) {
+    public List<TagDiario> listarTudo() {
         EntityManager em = new connection.ConnectionFactory().getConnection();
-        Usuario usuario = null;
+        List<TagDiario> tagsDiario = null;
         try {
             em.getTransaction().begin();
-            usuario = (Usuario) em.createQuery("SELECT * from public.usuario where txt_email = " + txtEmail).getSingleResult();
+            tagsDiario = em.createQuery("SELECT * from public.tag_diario").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -81,16 +81,16 @@ public class UsuarioDAO implements InterfaceUsuarioDAO{
             em.close();
         }
 
-        return usuario;
+        return tagsDiario;
     }
 
     @Override
-    public List<Usuario> listarTudo() {
+    public List<TagDiario> listarPorCodDiario(Long codDiario) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
-        List<Usuario> usuarios = null;
+        List<TagDiario> tagsDiario = null;
         try {
             em.getTransaction().begin();
-            usuarios = em.createQuery("SELECT * from public.usuario").getResultList();
+            tagsDiario = em.createQuery("SELECT * from public.tag_diario order by cod_diario").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -99,16 +99,16 @@ public class UsuarioDAO implements InterfaceUsuarioDAO{
             em.close();
         }
 
-        return usuarios;
+        return tagsDiario;
     }
 
     @Override
-    public Usuario consultarPorEmailSenha(String email, String senha) {
+    public List<TagDiario> listarPorCodTag(Long codTag) {
         EntityManager em = new connection.ConnectionFactory().getConnection();
-        Usuario usuario = null;
+        List<TagDiario> tagsDiario = null;
         try {
             em.getTransaction().begin();
-            usuario = (Usuario) em.createQuery("SELECT * from public.usuario where txt_email = " + email + "and txt_senha = " + senha).getSingleResult();
+            tagsDiario = em.createQuery("SELECT * from public.tag_diario order by cod_tag").getResultList();
             
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -117,7 +117,7 @@ public class UsuarioDAO implements InterfaceUsuarioDAO{
             em.close();
         }
 
-        return usuario;
+        return tagsDiario;
     }
     
 }
