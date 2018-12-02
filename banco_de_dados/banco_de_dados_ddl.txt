@@ -129,17 +129,17 @@ CREATE TABLE public.dia_atracao (
 
 ALTER SEQUENCE public.dia_atracao_cod_tipo_atracao_seq OWNED BY public.dia_atracao.cod_tipo_atracao;
 
-CREATE SEQUENCE public.tag_diario_cod_usuario_tag_seq;
+CREATE SEQUENCE public.tag_diario_cod_tag_diario_seq;
 
 CREATE TABLE public.tag_diario (
-                cod_usuario_tag SMALLINT NOT NULL DEFAULT nextval('public.tag_diario_cod_usuario_tag_seq'),
+                cod_tag_diario SMALLINT NOT NULL DEFAULT nextval('public.tag_diario_cod_tag_diario_seq'),
                 cod_diario SMALLINT NOT NULL,
                 cod_tag SMALLINT NOT NULL,
-                CONSTRAINT cod_tag_diario PRIMARY KEY (cod_usuario_tag)
+                CONSTRAINT cod_tag_diario PRIMARY KEY (cod_tag_diario)
 );
 
 
-ALTER SEQUENCE public.tag_diario_cod_usuario_tag_seq OWNED BY public.tag_diario.cod_usuario_tag;
+ALTER SEQUENCE public.tag_diario_cod_tag_diario_seq OWNED BY public.tag_diario.cod_tag_diario;
 
 CREATE SEQUENCE public.foto_seq_foto_seq;
 
