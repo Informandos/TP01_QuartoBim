@@ -6,7 +6,7 @@
 package model.service.interfaces;
 
 import java.util.List;
-import model.domainAntigo.Foto;
+import model.domainJPA.Foto;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

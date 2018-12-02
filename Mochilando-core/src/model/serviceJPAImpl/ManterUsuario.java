@@ -3,7 +3,7 @@ package model.serviceJPAImpl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.domainAntigo.Usuario;
+import model.domainJPA.Usuario;
 import model.service.interfaces.InterfaceManterUsuario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.service.ExcecaoNegocio;
@@ -23,7 +23,7 @@ public class ManterUsuario implements InterfaceManterUsuario {
 
     @Override
     public Long cadastrar(Usuario usuario) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente, ExcecaoConexaoCliente {
-        if ((usuario.getNomUsuario() == null) || (usuario.getNomUsuario().isEmpty())) {
+        if ((usuario.getNomeUsuario() == null) || (usuario.getNomeUsuario().isEmpty())) {
             throw new ExcecaoNegocio("Obrigatório informar o nome.");
         }
         if ((usuario.getTxtSenha() == null) || (usuario.getTxtSenha().isEmpty())) {
@@ -47,7 +47,7 @@ public class ManterUsuario implements InterfaceManterUsuario {
 
     @Override
     public boolean alterar(Usuario usuario) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente, ExcecaoConexaoCliente {
-        if ((usuario.getNomUsuario() == null) || (usuario.getNomUsuario().isEmpty())) {
+        if ((usuario.getNomeUsuario() == null) || (usuario.getNomeUsuario().isEmpty())) {
             throw new ExcecaoNegocio("Obrigatório informar o nome.");
         }
         if ((usuario.getTxtSenha() == null) || (usuario.getTxtSenha().isEmpty())) {
@@ -71,7 +71,7 @@ public class ManterUsuario implements InterfaceManterUsuario {
             usuarioAux.setCodUsuario(usuario.getCodUsuario());
             usuarioAux.setDatNascimento(usuario.getDatNascimento());
             usuarioAux.setImgPerfil(usuario.getImgPerfil());
-            usuarioAux.setNomUsuario(usuario.getNomUsuario());
+            usuarioAux.setNomeUsuario(usuario.getNomeUsuario());
             usuarioAux.setSexo(usuario.getSexo());
             usuarioAux.setSobrenomeUsuario(usuario.getSobrenomeUsuario());
             usuarioAux.setTxtEmail(usuario.getSobrenomeUsuario());

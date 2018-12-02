@@ -13,7 +13,7 @@ import model.service.interfaces.InterfaceManterAtracao;
 import util.db.exception.ExcecaoConexaoCliente;
 
 
-public class ManterAtracao implements InterfaceManterAtracao{
+public class ManterAtracao implements InterfaceManterAtracao {
 
     private final InterfaceAtracaoDAO atracaoDAO;
 

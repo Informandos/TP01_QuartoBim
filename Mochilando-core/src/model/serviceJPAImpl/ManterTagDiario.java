@@ -3,7 +3,7 @@ package model.serviceJPAImpl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.domainAntigo.TagDiario;
+import model.domainJPA.TagDiario;
 import model.service.interfaces.InterfaceManterTagDiario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.service.ExcecaoNegocio;
@@ -19,7 +19,7 @@ public class ManterTagDiario implements InterfaceManterTagDiario {
     
     @Override
     public Long cadastrar(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
-        if(tagDiario.getSeqTagDiario() == null){
+        if(tagDiario.getCodDiarioTag() == null){
             throw new ExcecaoNegocio("Obrigatório informar o código da Tag do diário");
         }
         if(tagDiario.getDiario().getCodDiario() == null){
@@ -30,12 +30,12 @@ public class ManterTagDiario implements InterfaceManterTagDiario {
         }
         
         em.persist(tagDiario);
-        return tagDiario.getSeqTagDiario();
+        return tagDiario.getCodDiarioTag();
     }
 
     @Override
     public boolean alterar(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
-        if(tagDiario.getSeqTagDiario() == null){
+        if(tagDiario.getCodDiarioTag() == null){
             throw new ExcecaoNegocio("Obrigatório informar o código da Tag do diário");
         }
         if(tagDiario.getDiario().getCodDiario() == null){
@@ -44,9 +44,9 @@ public class ManterTagDiario implements InterfaceManterTagDiario {
         if(tagDiario.getTag().getCodTag() == null){
             throw new ExcecaoNegocio("Obrigatório informar o código da tag");
         }
-        TagDiario tagDiarioAux = pesquisarPorId(tagDiario.getSeqTagDiario());
+        TagDiario tagDiarioAux = pesquisarPorId(tagDiario.getCodDiarioTag());
         if(tagDiarioAux != null){
-            tagDiarioAux.setSeqTagDiario(tagDiario.getSeqTagDiario());
+            tagDiarioAux.setCodDiarioTag(tagDiario.getCodDiarioTag());
             tagDiarioAux.setDiario(tagDiario.getDiario());
             tagDiarioAux.setTag(tagDiario.getTag());
         }

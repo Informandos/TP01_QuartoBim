@@ -6,7 +6,7 @@
 package model.service.interfaces;
 
 import java.util.List;
-import model.domainAntigo.TagDiario;
+import model.domainJPA.TagDiario;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;

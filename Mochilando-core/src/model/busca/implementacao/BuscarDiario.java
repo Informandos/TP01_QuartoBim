@@ -9,7 +9,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import model.dao.implementacao.UsuarioDAO;
 import model.dao.interfaces.InterfaceUsuarioDAO;
+<<<<<<< HEAD
 import model.domainJPA.Diario;
+=======
+import model.domainAntigo.Diario;
+import model.domainJPA.Usuario;
+>>>>>>> a0b8329256d2b685c9365a099ddcd5dceb610043
 import util.db.ConnectionManager;
 import util.db.exception.ExcecaoPersistencia;
 

@@ -3,9 +3,9 @@ package model.service.implementacao;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
-import model.dao.implementacao.TagDiarioDAO;
-import model.dao.interfaces.InterfaceTagDiarioDAO;
-import model.domainAntigo.TagDiario;
+import model.daoJPA.implementacao.TagDiarioDAO;
+import model.daoJPA.interfaces.InterfaceTagDiarioDAO;
+import model.domainJPA.TagDiario;
 import model.service.interfaces.InterfaceManterTagDiario;
 
 public class ManterTagDiario implements InterfaceManterTagDiario{
@@ -18,7 +18,7 @@ public class ManterTagDiario implements InterfaceManterTagDiario{
     
     @Override
     public Long cadastrar(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio {
-        if(tagDiario.getSeqTagDiario() == null){
+        if(tagDiario.getCodDiarioTag() == null){
             throw new ExcecaoNegocio("Obrigatório informar o código da Tag do diário");
         }
         if(tagDiario.getDiario().getCodDiario() == null){
@@ -34,7 +34,7 @@ public class ManterTagDiario implements InterfaceManterTagDiario{
 
     @Override
     public boolean alterar(TagDiario tagDiario) throws ExcecaoPersistencia, ExcecaoNegocio {
-        if(tagDiario.getSeqTagDiario() == null){
+        if(tagDiario.getCodDiarioTag() == null){
             throw new ExcecaoNegocio("Obrigatório informar o código da Tag do diário");
         }
         if(tagDiario.getDiario().getCodDiario() == null){

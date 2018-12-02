@@ -57,5 +57,6 @@ public class Foto implements Serializable {
     public void setFoto(Byte Foto) {
         this.Foto = Foto;
     }
-
+    
+    
 }

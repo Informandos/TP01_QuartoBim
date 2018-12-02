@@ -4,7 +4,7 @@ import connection.ConnectionFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
 import model.daoJPA.interfaces.InterfaceFotoDAO;
-import model.domainAntigo.Foto;
+import model.domainJPA.Foto;
 
 /**
  *

@@ -3,9 +3,9 @@ package model.service.implementacao;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 import java.util.List;
-import model.dao.implementacao.UsuarioTagDAO;
-import model.dao.interfaces.InterfaceUsuarioTagDAO;
-import model.domainAntigo.UsuarioTag;
+import model.daoJPA.implementacao.UsuarioTagDAO;
+import model.daoJPA.interfaces.InterfaceUsuarioTagDAO;
+import model.domainJPA.UsuarioTag;
 import model.service.interfaces.InterfaceManterUsuarioTag;
 
 public class ManterUsuarioTag implements InterfaceManterUsuarioTag {

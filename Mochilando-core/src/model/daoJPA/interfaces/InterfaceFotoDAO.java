@@ -1,7 +1,7 @@
 package model.daoJPA.interfaces;
 
 import java.util.List;
-import model.domainAntigo.Foto;
+import model.domainJPA.Foto;
 
 /**
  *
