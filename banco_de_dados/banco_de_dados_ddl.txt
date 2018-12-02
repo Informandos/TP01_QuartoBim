@@ -65,7 +65,7 @@ CREATE TABLE public.usuario (
                 sobrenome_usuario VARCHAR NOT NULL,
                 txt_email VARCHAR NOT NULL,
                 txt_senha VARCHAR NOT NULL,
-                txt_senha BYTEA NOT NULL,
+                img_perfil BYTEA NOT NULL,
                 sexo VARCHAR NOT NULL,
                 dat_nascimento DATE NOT NULL,
                 CONSTRAINT cod_usuario PRIMARY KEY (cod_usuario)
