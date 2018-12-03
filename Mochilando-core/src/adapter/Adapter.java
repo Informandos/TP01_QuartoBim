@@ -18,52 +18,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.domainAntigo.Atracao;
-import model.domainAntigo.AvaliacaoComentario;
-import model.domainAntigo.AvaliacaoDiario;
-import model.domainAntigo.Cidade;
-import model.domainAntigo.Comentario;
-import model.domainAntigo.Dia;
-import model.domainAntigo.DiaAtracao;
-import model.domainAntigo.Diario;
+import model.domainJPA.Atracao;
+import model.domainJPA.Cidade;
+import model.domainJPA.Dia;
+import model.domainJPA.Diario;
+import model.domainJPA.Estado;
 import model.domainJPA.Foto;
 import model.domainJPA.Tag;
 import model.domainJPA.TagDiario;
 import model.domainJPA.TipoAtracao;
 import model.domainJPA.Usuario;
 import model.domainJPA.UsuarioTag;
-import model.domainJPA.Estado;
-import model.domainJPA.Atracao;
-import model.service.implementacao.ManterAtracao;
-import model.service.implementacao.ManterAvaliacaoComentario;
-import model.service.implementacao.ManterAvaliacaoDiario;
-import model.service.implementacao.ManterCidade;
-import model.service.implementacao.ManterComentario;
-import model.service.implementacao.ManterDia;
-import model.service.implementacao.ManterDiaAtracao;
-import model.service.implementacao.ManterDiario;
-import model.service.implementacao.ManterEstado;
-import model.service.implementacao.ManterFoto;
-import model.service.implementacao.ManterTag;
-import model.service.implementacao.ManterTagDiario;
-import model.service.implementacao.ManterTipoAtracao;
-import model.service.implementacao.ManterUsuario;
-import model.service.implementacao.ManterUsuarioTag;
-import model.service.interfaces.InterfaceManterAtracao;
-import model.service.interfaces.InterfaceManterAvaliacaoComentario;
-import model.service.interfaces.InterfaceManterAvaliacaoDiario;
-import model.service.interfaces.InterfaceManterCidade;
-import model.service.interfaces.InterfaceManterComentario;
-import model.service.interfaces.InterfaceManterDia;
-import model.service.interfaces.InterfaceManterDiaAtracao;
-import model.service.interfaces.InterfaceManterDiario;
-import model.service.interfaces.InterfaceManterEstado;
-import model.service.interfaces.InterfaceManterFoto;
-import model.service.interfaces.InterfaceManterTag;
-import model.service.interfaces.InterfaceManterTagDiario;
-import model.service.interfaces.InterfaceManterTipoAtracao;
-import model.service.interfaces.InterfaceManterUsuario;
-import model.service.interfaces.InterfaceManterUsuarioTag;
+import model.serviceJPA.Impl.*;
+import model.serviceJPA.interfaces.*;
 import util.db.exception.ExcecaoConexaoCliente;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
@@ -435,116 +402,7 @@ public class Adapter implements Runnable {
                 }
                 break;
                 
-            case "AvaliacaoComentario":
-                InterfaceManterAvaliacaoComentario manterAvaliacaoComentario = new ManterAvaliacaoComentario();
-                operacao = (String) requisicao.get(1);
-                
-                if (operacao.equals("cadastrar")) {
-                  AvaliacaoComentario avlComentario = (AvaliacaoComentario) requisicao.get(2);
-                  Long codAtr = manterAvaliacaoComentario.cadastrar(avlComentario);
-                    if (resposta == null) {
-                        resposta.add(codAtr);
-                    }
-
-                } else if (operacao.equals("alterar")) {
-                   AvaliacaoComentario avlComentario = (AvaliacaoComentario) requisicao.get(2);
-                   boolean sucesso = manterAvaliacaoComentario.alterar(avlComentario);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("excluir")) {
-                   AvaliacaoComentario avlComentario = (AvaliacaoComentario) requisicao.get(2);
-                   boolean sucesso = manterAvaliacaoComentario.excluir(avlComentario);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("pesquisarPorId")) {
-                   Long seqAvaliacao = (Long) requisicao.get(2);
-                   AvaliacaoComentario result = manterAvaliacaoComentario.pesquisarPorId(seqAvaliacao);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarNumAvPositivas")) {
-                   Long seqComentario = (Long) requisicao.get(2);
-                   int result = manterAvaliacaoComentario.pesquisarNumAvPositivas(seqComentario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarNumAvNegativas")) {
-                   Long seqComentario = (Long) requisicao.get(2);
-                   int result = manterAvaliacaoComentario.pesquisarNumAvNegativas(seqComentario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarPorDiario")) {
-                   Long codDiario = (Long) requisicao.get(2);
-                   List<AvaliacaoComentario> result = manterAvaliacaoComentario.pesquisarPorDiario(codDiario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarTodos")) {
-                   Long seqAvaliacao = (Long) requisicao.get(2);
-                   List<AvaliacaoComentario> result = manterAvaliacaoComentario.pesquisarTodos(seqAvaliacao);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                }
-                break;
-                
-            case "AvaliacaoDiario":
-                InterfaceManterAvaliacaoDiario manterAvaliacaoDiario = new ManterAvaliacaoDiario();
-                operacao = (String) requisicao.get(1);    
-                    
-                if (operacao.equals("cadastrar")) {
-                    AvaliacaoDiario avlDiario = (AvaliacaoDiario) requisicao.get(2);
-                    Long avaliacaoDiario = manterAvaliacaoDiario.cadastrar(avlDiario);
-                    if (resposta == null) {
-                        resposta.add(avaliacaoDiario);
-                    }
-
-                } else if (operacao.equals("alterar")) {
-                    AvaliacaoDiario avlDiario = (AvaliacaoDiario) requisicao.get(2);
-                    boolean sucesso = manterAvaliacaoDiario.alterar(avlDiario);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("excluir")) {
-                    AvaliacaoDiario avlDiario = (AvaliacaoDiario) requisicao.get(2);
-                    boolean sucesso =  manterAvaliacaoDiario.excluir(avlDiario);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("pesquisarPorId")) {
-                   Long seqAvaliacao = (Long) requisicao.get(2);
-                   AvaliacaoDiario result =  manterAvaliacaoDiario.pesquisarPorId(seqAvaliacao);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarNumAvPositivas")) {
-                   Long codDiario = (Long) requisicao.get(2);
-                   int result =  manterAvaliacaoDiario.pesquisarNumAvPositivas(codDiario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarNumAvNegativas")) {
-                   Long codDiario = (Long) requisicao.get(2);
-                   int result =  manterAvaliacaoDiario.pesquisarNumAvNegativas(codDiario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarPorDiario")) {
-                   Long codDiario = (Long) requisicao.get(2);
-                   List<AvaliacaoDiario> result =  manterAvaliacaoDiario.pesquisarPorDiario(codDiario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarTodos")) {                  
-                   List<AvaliacaoDiario> result =  manterAvaliacaoDiario.pesquisarTodos();
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } 
-                break;
+            
              
             case "Cidade":
                 InterfaceManterCidade manterCidade = new ManterCidade();
@@ -588,47 +446,7 @@ public class Adapter implements Runnable {
                 }
                 break;
                 
-            case "Comentario": 
-                InterfaceManterComentario manterComentario = new ManterComentario();
-                operacao = (String) requisicao.get(1);
-                
-                if (operacao.equals("cadastrar")) {
-                    Comentario coment = (Comentario) requisicao.get(2);
-                    Long comentario = manterComentario.cadastrar(coment);
-                    if (resposta == null) {
-                        resposta.add(comentario);
-                    }
-                } else if (operacao.equals("alterar")) {
-                   Comentario coment = (Comentario) requisicao.get(2);
-                   boolean sucesso = manterComentario.alterar(coment);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("excluir")) {
-                   Comentario coment = (Comentario) requisicao.get(2);
-                   boolean sucesso = manterComentario.excluir(coment);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("pesquisarPorId")) {
-                   Long seqComentario = (Long) requisicao.get(2);
-                   Comentario result = manterComentario.pesquisarPorId(seqComentario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    } 
-                } else if (operacao.equals("pesquisarPorCodDiario")) {
-                   Long codDiario = (Long) requisicao.get(2);
-                   List<Comentario> result = manterComentario.pesquisarPorCodDiario(codDiario);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    } 
-                } else if (operacao.equals("pesquisarTodos")) {
-                   List<Comentario> sucesso = manterComentario.pesquisarTodos();
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                }
-                break;
+            
                 
             case "Dia": 
                 InterfaceManterDia manterDia = new ManterDia();
@@ -672,47 +490,7 @@ public class Adapter implements Runnable {
                 }
                 break;
                 
-            case "DiaAtracao": 
-                InterfaceManterDiaAtracao manterDiaAtracao = new ManterDiaAtracao();
-                operacao = (String) requisicao.get(1);
-                
-                if (operacao.equals("cadastrar")) {
-                    DiaAtracao diaAtr = (DiaAtracao) requisicao.get(2);
-                    Long dia = manterDiaAtracao.cadastrar(diaAtr);
-                    if (resposta == null) {
-                        resposta.add(dia);
-                    }
-                } else if (operacao.equals("alterar")) {
-                   DiaAtracao diaAtr = (DiaAtracao) requisicao.get(2);
-                   boolean sucesso = manterDiaAtracao.alterar(diaAtr);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("excluir")) {
-                   DiaAtracao diaAtr = (DiaAtracao) requisicao.get(2);
-                   boolean sucesso = manterDiaAtracao.excluir(diaAtr);
-                    if (resposta == null) {
-                        resposta.add(sucesso);
-                    } 
-                } else if (operacao.equals("pesquisarPorId")) {
-                   Long seqDiaAtracao = (Long) requisicao.get(2);
-                   DiaAtracao result = manterDiaAtracao.pesquisarPorId(seqDiaAtracao);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarPorSeqDia")) {
-                   Long seqDia = (Long) requisicao.get(2);
-                   List<DiaAtracao> result = manterDiaAtracao.pesquisarPorSeqDia(seqDia);
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                } else if (operacao.equals("pesquisarTodos")) {
-                   List<DiaAtracao> result = manterDiaAtracao.pesquisarTodos();
-                    if (resposta == null) {
-                        resposta.add(result);
-                    }
-                }
-                break;
+            
                 
             case "Diario": 
                 InterfaceManterDiario manterDiario = new ManterDiario();
