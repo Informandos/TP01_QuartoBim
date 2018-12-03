@@ -27,9 +27,8 @@ public class ManterDiario implements InterfaceManterDiario {
     
     private InterfaceDiarioDAO diarioDAO;
     
-    
-    public ManterDiario(EntityManager em){
-        this.diarioDAO = new DiarioDAO();
+    public ManterDiario(){
+        
     }
 
     @Override

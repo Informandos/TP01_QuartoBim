@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.daoJPA.interfaces.InterfaceTagDAO;
 import model.domainJPA.Tag;
+import model.serviceJPA.interfaces.InterfaceManterTag;
+import util.db.exception.ExcecaoConexaoCliente;
 import util.service.ExcecaoNegocio;
 import util.db.exception.ExcecaoPersistencia;
 
@@ -14,10 +16,14 @@ import util.db.exception.ExcecaoPersistencia;
  *
  * @author lucca
  */
-public class ManterTag implements InterfaceTagDAO{
+public class ManterTag implements InterfaceTagDAO, InterfaceManterTag{
 
     protected EntityManager em;
 
+    public ManterTag(){
+        
+    }
+        
     public ManterTag(EntityManager em) {
         this.em = em;
     }
@@ -90,6 +96,36 @@ public class ManterTag implements InterfaceTagDAO{
         Query query = em.createQuery("SELECT * FROM tag ORDER BY cod_tag");
         List<Tag> result = query.getResultList();
         return result;
+    }
+
+    @Override
+    public Long cadastrar(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterar(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean excluir(Tag tag) throws ExcecaoPersistencia, ExcecaoNegocio, ExcecaoConexaoCliente {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Tag pesquisarPorId(Long codTag) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Tag pesquisarPorNome(String descTag) throws ExcecaoPersistencia, ExcecaoConexaoCliente {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Tag> pesquisarTodos() throws ExcecaoPersistencia, ExcecaoConexaoCliente {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
