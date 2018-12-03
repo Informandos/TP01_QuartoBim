@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.daoJPA.impl.TagDAO;
 import model.daoJPA.interfaces.InterfaceTagDAO;
 import model.domainJPA.Tag;
 import util.service.ExcecaoNegocio;
@@ -15,15 +14,13 @@ import util.db.exception.ExcecaoPersistencia;
  *
  * @author lucca
  */
-public class ManterTag implements InterfaceTagDAO {
+public class ManterTag implements InterfaceTagDAO{
 
-    protected InterfaceTagDAO tagDAO;
+    protected EntityManager em;
 
-    public ManterTag() {
-        tagDAO = new TagDAO();
+    public ManterTag(EntityManager em) {
+        this.em = em;
     }
-    
-    
     
     @Override
     public Long inserir(Tag tag) {
@@ -39,7 +36,7 @@ public class ManterTag implements InterfaceTagDAO {
         } catch (ExcecaoNegocio ex) {
             Logger.getLogger(ManterTag.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tagDAO.inserir(tag);
+        em.persist(tag);
         return tag.getCodTag();
     }
 
@@ -71,25 +68,27 @@ public class ManterTag implements InterfaceTagDAO {
     @Override
     public boolean deletar(Tag tag) {
         if(tag != null){
-            tagDAO.deletar(tag);
+            em.remove(tag);
         }
         return true;
     }
 
     @Override
     public Tag consultarPorId(Long codTag) {
-        return tagDAO.consultarPorId(codTag);
+        return em.find(Tag.class, codTag);
     }
 
     @Override
     public Tag consultarPorNome(String descTag) {
-        Tag result = tagDAO.consultarPorNome(descTag);
+        Query query = em.createQuery("SELECT * FROM tag WHERE desc_tag = "+descTag);
+        Tag result = (Tag) query.getSingleResult();
         return result;
     }
 
     @Override
     public List<Tag> listarTudo() {
-        List<Tag> result = tagDAO.listarTudo();
+        Query query = em.createQuery("SELECT * FROM tag ORDER BY cod_tag");
+        List<Tag> result = query.getResultList();
         return result;
     }
     
