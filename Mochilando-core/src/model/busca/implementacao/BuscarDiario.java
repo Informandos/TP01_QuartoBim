@@ -12,7 +12,6 @@ import model.daoJPA.interfaces.InterfaceUsuarioDAO;
 import model.domainJPA.Diario;
 
 import model.domainJPA.Usuario;
-import util.db.ConnectionManager;
 import util.db.exception.ExcecaoPersistencia;
 
 public class BuscarDiario {
